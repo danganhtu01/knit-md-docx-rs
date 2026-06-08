@@ -305,6 +305,16 @@ impl Run {
         self
     }
 
+    pub fn superscript(mut self) -> Run {
+        self.run_property = self.run_property.vert_align(VertAlignType::SuperScript);
+        self
+    }
+
+    pub fn subscript(mut self) -> Run {
+        self.run_property = self.run_property.vert_align(VertAlignType::SubScript);
+        self
+    }
+
     pub fn strike(mut self) -> Run {
         self.run_property = self.run_property.strike();
         self

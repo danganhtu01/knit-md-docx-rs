@@ -42,6 +42,7 @@ pub enum ParagraphChild {
     StructuredDataTag(Box<StructuredDataTag>),
     PageNum(Box<PageNum>),
     NumPages(Box<NumPages>),
+    OMath(Box<OMath>),
 }
 
 impl BuildXML for ParagraphChild {
@@ -63,6 +64,7 @@ impl BuildXML for ParagraphChild {
             ParagraphChild::StructuredDataTag(v) => v.build_to(stream),
             ParagraphChild::PageNum(v) => v.build_to(stream),
             ParagraphChild::NumPages(v) => v.build_to(stream),
+            ParagraphChild::OMath(v) => v.build_to(stream),
         }
     }
 }
@@ -151,6 +153,12 @@ impl Serialize for ParagraphChild {
                 t.serialize_field("data", r)?;
                 t.end()
             }
+            ParagraphChild::OMath(ref r) => {
+                let mut t = serializer.serialize_struct("OMath", 2)?;
+                t.serialize_field("type", "oMath")?;
+                t.serialize_field("data", r)?;
+                t.end()
+            }
         }
     }
 }
@@ -187,6 +195,11 @@ impl Paragraph {
         self.children
             .push(ParagraphChild::BookmarkEnd(BookmarkEnd::new(id)));
 
+        self
+    }
+
+    pub fn add_omath(mut self, math: OMath) -> Self {
+        self.children.push(ParagraphChild::OMath(Box::new(math)));
         self
     }
 
@@ -382,6 +395,21 @@ impl Paragraph {
 
     pub fn paragraph_property_change(mut self, p: ParagraphPropertyChange) -> Self {
         self.property = self.property.paragraph_property_change(p);
+        self
+    }
+
+    pub fn set_borders(mut self, borders: ParagraphBorders) -> Self {
+        self.property = self.property.set_borders(borders);
+        self
+    }
+
+    pub fn set_border(mut self, border: ParagraphBorder) -> Self {
+        self.property = self.property.set_border(border);
+        self
+    }
+
+    pub fn clear_border(mut self, position: ParagraphBorderPosition) -> Self {
+        self.property = self.property.clear_border(position);
         self
     }
 
