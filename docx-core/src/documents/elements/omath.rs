@@ -94,7 +94,10 @@ impl BuildXML for OMathElement {
             OMathElement::Run(text) => b
                 .write(XmlEvent::start_element("m:r"))?
                 .write(XmlEvent::start_element("m:t").attr("xml:space", "preserve"))?
-                .write(text.as_str())?
+                // Character data must be escaped: the shared writer emits text
+                // verbatim (perform_escaping == false), so `<`, `>`, `&` in math
+                // would otherwise produce malformed XML and a Word repair prompt.
+                .write(crate::escape::escape(text).as_str())?
                 .close()? // m:t
                 .close()?, // m:r
             OMathElement::SuperScript { base, sup } => {
@@ -153,8 +156,11 @@ impl BuildXML for OMathElement {
                 let b = b.write(XmlEvent::start_element("m:nary"))?;
                 // naryPr: operator glyph; hide unused sub/sup slots.
                 let b = b.write(XmlEvent::start_element("m:naryPr"))?;
+                // Attribute values are written verbatim by the writer too, so a
+                // delimiter/operator glyph of `<`/`>`/`&` must be escaped.
+                let chr = crate::escape::escape(operator);
                 let b = b
-                    .write(XmlEvent::start_element("m:chr").attr("m:val", operator.as_str()))?
+                    .write(XmlEvent::start_element("m:chr").attr("m:val", chr.as_str()))?
                     .close()?;
                 let b = b
                     .write(
@@ -177,11 +183,16 @@ impl BuildXML for OMathElement {
             OMathElement::Delimited { begin, end, body } => {
                 let b = b.write(XmlEvent::start_element("m:d"))?;
                 let b = b.write(XmlEvent::start_element("m:dPr"))?;
+                // Empty `m:val=""` is valid and means "invisible delimiter"
+                // (e.g. `\left. \right.`); escape so a literal `<`/`>` glyph is
+                // well-formed.
+                let beg = crate::escape::escape(begin);
+                let end_ = crate::escape::escape(end);
                 let b = b
-                    .write(XmlEvent::start_element("m:begChr").attr("m:val", begin.as_str()))?
+                    .write(XmlEvent::start_element("m:begChr").attr("m:val", beg.as_str()))?
                     .close()?;
                 let b = b
-                    .write(XmlEvent::start_element("m:endChr").attr("m:val", end.as_str()))?
+                    .write(XmlEvent::start_element("m:endChr").attr("m:val", end_.as_str()))?
                     .close()?;
                 let b = b.close()?; // m:dPr
                 let b = build_arg(b, "m:e", body)?;
@@ -330,5 +341,29 @@ mod tests {
         assert!(s.contains("m:chr"));
         assert!(s.contains("<m:sub>"));
         assert!(s.contains("<m:sup>"));
+    }
+
+    #[test]
+    fn test_omath_run_escapes_xml_metacharacters() {
+        // `<`, `>`, `&` in math text must be escaped or document.xml is
+        // malformed and Word offers to repair (dropping the equation).
+        let s = str::from_utf8(&OMath::new("a < b & c > d").build())
+            .unwrap()
+            .to_string();
+        assert!(s.contains("a &lt; b &amp; c &gt; d"), "got: {s}");
+        assert!(!s.contains("a < b"), "raw < must not survive");
+    }
+
+    #[test]
+    fn test_omath_delimiter_attr_is_escaped() {
+        // A user-supplied delimiter glyph of `<`/`>` must be escaped in m:val.
+        let math = OMath::from_elements(vec![OMathElement::Delimited {
+            begin: "<".into(),
+            end: ">".into(),
+            body: vec![OMathElement::Run("x".into())],
+        }]);
+        let s = str::from_utf8(&math.build()).unwrap().to_string();
+        assert!(s.contains("m:val=\"&lt;\""), "begChr escaped: {s}");
+        assert!(s.contains("m:val=\"&gt;\""), "endChr escaped");
     }
 }
