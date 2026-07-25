@@ -2480,7 +2480,7 @@ mod emf_tests {
         // ---- EMR_HEADER (88 bytes) ----
         buf.extend_from_slice(&1u32.to_le_bytes()); // record type
         buf.extend_from_slice(&88u32.to_le_bytes()); // record size
-        // Bounds rect (RECTL)
+                                                     // Bounds rect (RECTL)
         buf.extend_from_slice(&0i32.to_le_bytes());
         buf.extend_from_slice(&0i32.to_le_bytes());
         buf.extend_from_slice(&100i32.to_le_bytes());
@@ -2699,8 +2699,8 @@ mod emf_reader_tests {
     fn build_docx_with_emf() -> Vec<u8> {
         let buf = std::io::Cursor::new(Vec::<u8>::new());
         let mut zip = zip::ZipWriter::new(buf);
-        let opts: zip::write::FileOptions<'_, ()> = zip::write::FileOptions::default()
-            .compression_method(zip::CompressionMethod::Deflated);
+        let opts: zip::write::FileOptions<'_, ()> =
+            zip::write::FileOptions::default().compression_method(zip::CompressionMethod::Deflated);
 
         let content_types = r#"<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
