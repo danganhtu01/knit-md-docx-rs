@@ -1,0 +1,11 @@
+# This repo is copied into ff-lc-app's builder as a named build context. Only
+# docx-core is consumed; everything else is 30+ MB shipped to the daemon on every
+# image build for nothing.
+.git
+docx-wasm
+fixtures
+docs
+target
+*.docx
+*.json
+!docx-core/**/*.json
