@@ -1,6 +1,6 @@
 # knit-md-docx-rs — master
 
-> **last write-back: 2026-09-24T14:50:04+07** — K-003 done and retired to [`TODO_LEDGER.csv`](TODO_LEDGER.csv): knit-md-docx release v0.2.0 (run 35971123594) published, its three assets downloaded anonymously, SHA256SUMS OK, `--version` 0.2.0; the tag sent to the chief for os-config.
+> **last write-back: 2026-09-25T04:02:24+07** — integrity sweep: CODE_BREAKDOWN.md in knit-md-docx brought up to the language work (--lang, --version, document_lang, lang.rs, east_asian_compat); the carried NO-OUTBOUND warnings written down here and in knit-md-docx's MASTER.md; the os-config line points at K-003 in the ledger.
 
 The owner's fork of [bokuweb/docx-rs](https://github.com/bokuweb/docx-rs), a `.docx` writer and
 reader in Rust. The crate in [`docx-core/`](docx-core/) is published under the package name
@@ -24,8 +24,8 @@ Consumers outside the pair, found from their code on 2026-09-24:
   Dockerfile copies both repositories in as named build contexts, which is why each has a
   `.dockerignore`.
 - **llm-skills** — the `deutsch-perfekt-glossieren` skill knits with the `knit-md-docx` binary.
-- **os-config** — terminal-config is to install the CLI on every machine from a tagged release
-  (K-003).
+- **os-config** — terminal-config is to install the CLI on every machine from its tagged GitHub
+  releases (built under K-003, now in [`TODO_LEDGER.csv`](TODO_LEDGER.csv)).
 
 ## Where the state lives
 
@@ -95,4 +95,7 @@ Directories, mapped as directories where they are upstream trees:
 upstream trees above (`docx-core/`, `docx-wasm/`, `fixtures/`, `docs/`) hold over a thousand
 source files and fixtures, which are mapped by directory here. Their `NO-INBOUND` and `NOT-IN-MAP`
 warnings are carried by decision, not left by oversight: a per-file listing would be a
-generated copy of `git ls-files` that goes stale with every upstream merge. Errors are not carried.
+generated copy of `git ls-files` that goes stale with every upstream merge. The same goes for
+`NO-OUTBOUND` on upstream's own documents, which point only at the web: [`README.md`](README.md),
+[`CHANGELOG.md`](CHANGELOG.md), [`CONTRIBUTING.md`](CONTRIBUTING.md) and the three `.github` templates;
+a map line added to them would be one more conflict at every upstream merge. Errors are not carried.
