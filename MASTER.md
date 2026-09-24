@@ -1,6 +1,6 @@
 # knit-md-docx-rs — master
 
-> **last write-back: 2026-09-24T14:43:20+07** — K-001 (knit-md-docx-rs a2b3f2e, knit-md-docx d898ae8) and K-002 (knit-md-docx made public, owner-approved) retired to [`TODO_LEDGER.csv`](TODO_LEDGER.csv); K-003 tagged v0.2.0, release run in progress; K-004 opened (two unmerged knit-md-docx branches).
+> **last write-back: 2026-09-24T14:50:04+07** — K-003 done and retired to [`TODO_LEDGER.csv`](TODO_LEDGER.csv): knit-md-docx release v0.2.0 (run 35971123594) published, its three assets downloaded anonymously, SHA256SUMS OK, `--version` 0.2.0; the tag sent to the chief for os-config.
 
 The owner's fork of [bokuweb/docx-rs](https://github.com/bokuweb/docx-rs), a `.docx` writer and
 reader in Rust. The crate in [`docx-core/`](docx-core/) is published under the package name
