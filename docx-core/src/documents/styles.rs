@@ -43,6 +43,11 @@ impl Styles {
         self
     }
 
+    pub fn default_lang(mut self, l: Lang) -> Self {
+        self.doc_defaults = self.doc_defaults.lang(l);
+        self
+    }
+
     pub(crate) fn doc_defaults(mut self, doc_defaults: DocDefaults) -> Self {
         self.doc_defaults = doc_defaults;
         self

@@ -17,7 +17,9 @@
 > **Fork notice.** This is a fork of [`docx-rs`](https://github.com/bokuweb/docx-rs) by
 > [**bokuweb**](https://github.com/bokuweb) — full credit for the original library goes to the
 > original author. Published to crates.io as **`knit-md-docx-rs`**, this fork adds native
-> OMML/oMath equations, run-level superscript/subscript, and paragraph borders for thematic breaks.
+> OMML/oMath equations, run-level superscript/subscript, paragraph borders for thematic breaks,
+> document-language tagging (`w:lang`), and a switch that leaves out the East Asian compatibility
+> flags upstream writes into every `settings.xml` (`Docx::east_asian_compat(false)`).
 >
 > **Fork maintained by** [danganhtu01](https://github.com/danganhtu01), with
 > **Claude (Anthropic) as co-author**.

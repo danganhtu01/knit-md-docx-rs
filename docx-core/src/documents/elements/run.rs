@@ -350,6 +350,11 @@ impl Run {
         self
     }
 
+    pub fn lang(mut self, l: Lang) -> Run {
+        self.run_property = self.run_property.lang(l);
+        self
+    }
+
     pub(crate) fn set_property(mut self, p: RunProperty) -> Run {
         self.run_property = p;
         self

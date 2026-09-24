@@ -168,6 +168,26 @@ impl<W: Write> XMLBuilder<W> {
     closed_with_str!(justification, "w:jc");
     // i.e. <w:vertAlign ... >
     closed_with_str!(vert_align, "w:vertAlign");
+
+    // i.e. <w:lang w:val="de-DE" w:eastAsia="..." w:bidi="..." />
+    pub(crate) fn lang(
+        self,
+        val: Option<&String>,
+        east_asia: Option<&String>,
+        bidi: Option<&String>,
+    ) -> Result<Self> {
+        let mut w = XmlEvent::start_element("w:lang");
+        if let Some(val) = val {
+            w = w.attr("w:val", val);
+        }
+        if let Some(east_asia) = east_asia {
+            w = w.attr("w:eastAsia", east_asia);
+        }
+        if let Some(bidi) = bidi {
+            w = w.attr("w:bidi", bidi);
+        }
+        self.write(w)?.close()
+    }
     // i.e. <w:pStyle ... >
     closed_with_str!(paragraph_style, "w:pStyle");
     // i.e. <w:rStyle ... >

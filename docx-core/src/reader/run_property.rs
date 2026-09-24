@@ -104,6 +104,18 @@ impl ElementReader for RunProperty {
                                 rp = rp.vert_align(v)
                             }
                         }
+                        XMLElement::Lang => {
+                            let mut l = Lang::default();
+                            for a in &attributes {
+                                match a.name.local_name.as_str() {
+                                    "val" => l.val = Some(a.value.clone()),
+                                    "eastAsia" => l.east_asia = Some(a.value.clone()),
+                                    "bidi" => l.bidi = Some(a.value.clone()),
+                                    _ => {}
+                                }
+                            }
+                            rp = rp.lang(l);
+                        }
                         XMLElement::Color => rp = rp.color(attributes[0].value.clone()),
                         XMLElement::Size => {
                             rp = rp.size(f64::from_str(&attributes[0].value)? as usize)

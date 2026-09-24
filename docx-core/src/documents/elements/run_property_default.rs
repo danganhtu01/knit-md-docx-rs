@@ -31,6 +31,11 @@ impl RunPropertyDefault {
         self
     }
 
+    pub fn lang(mut self, l: Lang) -> Self {
+        self.run_property = self.run_property.lang(l);
+        self
+    }
+
     pub(crate) fn run_property(mut self, p: RunProperty) -> Self {
         self.run_property = p;
         self

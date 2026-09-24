@@ -5,7 +5,7 @@ use crate::{documents::BuildXML, RunProperty};
 use crate::{xml_builder::*, LineSpacing, ParagraphProperty, ParagraphPropertyDefault};
 
 use super::run_property_default::*;
-use super::RunFonts;
+use super::{Lang, RunFonts};
 
 #[derive(Debug, Clone, PartialEq, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -31,6 +31,11 @@ impl DocDefaults {
 
     pub fn fonts(mut self, font: RunFonts) -> Self {
         self.run_property_default = self.run_property_default.fonts(font);
+        self
+    }
+
+    pub fn lang(mut self, l: Lang) -> Self {
+        self.run_property_default = self.run_property_default.lang(l);
         self
     }
 

@@ -723,6 +723,21 @@ impl Docx {
         self
     }
 
+    /// The document-default language (`w:docDefaults` `w:lang`), which every run
+    /// inherits unless it sets its own: `Lang::new("de-DE")` for German text.
+    pub fn default_lang(mut self, l: Lang) -> Self {
+        self.styles = self.styles.default_lang(l);
+        self
+    }
+
+    /// Whether settings.xml carries the East Asian compatibility flags upstream
+    /// docx-rs always writes (see `Settings::east_asian_compat`). On by default;
+    /// turn it off for Latin-script documents.
+    pub fn east_asian_compat(mut self, on: bool) -> Self {
+        self.settings = self.settings.east_asian_compat(on);
+        self
+    }
+
     pub fn default_line_spacing(mut self, spacing: LineSpacing) -> Self {
         self.styles = self.styles.default_line_spacing(spacing);
         self

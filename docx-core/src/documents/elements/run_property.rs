@@ -59,6 +59,8 @@ pub struct RunProperty {
     pub positional_tab: Option<PositionalTab>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub shading: Option<Shading>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub lang: Option<Lang>,
 }
 
 impl RunProperty {
@@ -211,6 +213,11 @@ impl RunProperty {
         self.shading = Some(s);
         self
     }
+
+    pub fn lang(mut self, l: Lang) -> Self {
+        self.lang = Some(l);
+        self
+    }
 }
 
 impl BuildXML for RunProperty {
@@ -239,6 +246,7 @@ impl BuildXML for RunProperty {
             .add_optional_child(&self.ins)?
             .add_optional_child(&self.del)?
             .add_optional_child(&self.vert_align)?
+            .add_optional_child(&self.lang)?
             .add_optional_child(&self.character_spacing)?
             .add_optional_child(&self.fit_text)?
             .add_optional_child(&self.stretch)?

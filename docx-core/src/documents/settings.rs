@@ -18,6 +18,8 @@ pub struct Settings {
     adjust_line_height_in_table: bool,
     #[serde(skip_serializing_if = "Option::is_none")]
     character_spacing_control: Option<CharacterSpacingValues>,
+    #[serde(skip)]
+    east_asian_compat: bool,
 }
 
 impl Settings {
@@ -54,6 +56,17 @@ impl Settings {
         self.character_spacing_control = Some(val);
         self
     }
+
+    /// The compatibility flags a Japanese Word template writes, which upstream
+    /// docx-rs emits unconditionally: `spaceForUL`, `balanceSingleByteDoubleByteWidth`,
+    /// `doNotLeaveBackslashAlone`, `ulTrailSpace` and `useFELayout`. On by default,
+    /// as upstream. Turn them off for Latin-script text: with
+    /// `balanceSingleByteDoubleByteWidth` LibreOffice measures characters such as
+    /// "≈" and "ẹ" at East Asian widths and justified lines overrun the margin.
+    pub fn east_asian_compat(mut self, on: bool) -> Self {
+        self.east_asian_compat = on;
+        self
+    }
 }
 
 impl Default for Settings {
@@ -66,6 +79,7 @@ impl Default for Settings {
             even_and_odd_headers: false,
             adjust_line_height_in_table: false,
             character_spacing_control: None,
+            east_asian_compat: true,
         }
     }
 }
@@ -81,10 +95,12 @@ impl BuildXML for Settings {
             .add_child(&self.default_tab_stop)?
             .add_child(&self.zoom)?
             .open_compat()?
-            .space_for_ul()?
-            .balance_single_byte_double_byte_width()?
-            .do_not_leave_backslash_alone()?
-            .ul_trail_space()?
+            .apply_if(self.east_asian_compat, |b| {
+                b.space_for_ul()?
+                    .balance_single_byte_double_byte_width()?
+                    .do_not_leave_backslash_alone()?
+                    .ul_trail_space()
+            })?
             .do_not_expand_shift_return()?
             .apply_opt(self.character_spacing_control, |v, b| {
                 b.character_spacing_control(&v.to_string())
@@ -92,7 +108,7 @@ impl BuildXML for Settings {
             .apply_if(self.adjust_line_height_in_table, |b| {
                 b.adjust_line_height_table()
             })?
-            .use_fe_layout()?
+            .apply_if(self.east_asian_compat, |b| b.use_fe_layout())?
             .compat_setting(
                 "compatibilityMode",
                 "http://schemas.microsoft.com/office/word",
@@ -147,6 +163,15 @@ mod tests {
         assert_eq!(
             str::from_utf8(&b).unwrap(),
             r#"<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:settings xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml"><w:defaultTabStop w:val="840" /><w:zoom w:percent="100" /><w:compat><w:spaceForUL /><w:balanceSingleByteDoubleByteWidth /><w:doNotLeaveBackslashAlone /><w:ulTrailSpace /><w:doNotExpandShiftReturn /><w:useFELayout /><w:compatSetting w:name="compatibilityMode" w:uri="http://schemas.microsoft.com/office/word" w:val="15" /><w:compatSetting w:name="overrideTableStyleFontSizeAndJustification" w:uri="http://schemas.microsoft.com/office/word" w:val="1" /><w:compatSetting w:name="enableOpenTypeFeatures" w:uri="http://schemas.microsoft.com/office/word" w:val="1" /><w:compatSetting w:name="doNotFlipMirrorIndents" w:uri="http://schemas.microsoft.com/office/word" w:val="1" /><w:compatSetting w:name="differentiateMultirowTableHeaders" w:uri="http://schemas.microsoft.com/office/word" w:val="1" /><w:compatSetting w:name="useWord2013TrackBottomHyphenation" w:uri="http://schemas.microsoft.com/office/word" w:val="0" /></w:compat></w:settings>"#
+        );
+    }
+
+    #[test]
+    fn test_settings_without_east_asian_compat() {
+        let b = Settings::new().east_asian_compat(false).build();
+        assert_eq!(
+            str::from_utf8(&b).unwrap(),
+            r#"<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:settings xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml"><w:defaultTabStop w:val="840" /><w:zoom w:percent="100" /><w:compat><w:doNotExpandShiftReturn /><w:compatSetting w:name="compatibilityMode" w:uri="http://schemas.microsoft.com/office/word" w:val="15" /><w:compatSetting w:name="overrideTableStyleFontSizeAndJustification" w:uri="http://schemas.microsoft.com/office/word" w:val="1" /><w:compatSetting w:name="enableOpenTypeFeatures" w:uri="http://schemas.microsoft.com/office/word" w:val="1" /><w:compatSetting w:name="doNotFlipMirrorIndents" w:uri="http://schemas.microsoft.com/office/word" w:val="1" /><w:compatSetting w:name="differentiateMultirowTableHeaders" w:uri="http://schemas.microsoft.com/office/word" w:val="1" /><w:compatSetting w:name="useWord2013TrackBottomHyphenation" w:uri="http://schemas.microsoft.com/office/word" w:val="0" /></w:compat></w:settings>"#
         );
     }
 }
