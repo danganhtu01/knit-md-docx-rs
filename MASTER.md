@@ -1,6 +1,6 @@
 # knit-md-docx-rs — master
 
-> **last write-back: 2026-09-24T14:27:11+07** — project set up: this entry point, [`TODO.csv`](TODO.csv) with R-0930/R-0932 as K-001 to K-003, the sibling's `/srv/GitHub/knit-md-docx/MASTER.md`, and the registry entry `/srv/project-assistant/registry/knit-md-docx-rs.txt`.
+> **last write-back: 2026-09-24T14:43:20+07** — K-001 (knit-md-docx-rs a2b3f2e, knit-md-docx d898ae8) and K-002 (knit-md-docx made public, owner-approved) retired to [`TODO_LEDGER.csv`](TODO_LEDGER.csv); K-003 tagged v0.2.0, release run in progress; K-004 opened (two unmerged knit-md-docx branches).
 
 The owner's fork of [bokuweb/docx-rs](https://github.com/bokuweb/docx-rs), a `.docx` writer and
 reader in Rust. The crate in [`docx-core/`](docx-core/) is published under the package name
@@ -32,7 +32,7 @@ Consumers outside the pair, found from their code on 2026-09-24:
 | File | Role |
 | --- | --- |
 | [`TODO.csv`](TODO.csv) | the task file: open work only, one row per task |
-| `TODO_LEDGER.csv` | finished rows, moved whole under the same header; created on the first retirement |
+| [`TODO_LEDGER.csv`](TODO_LEDGER.csv) | finished rows, moved whole under the same header; searched, never loaded |
 | this file | the heartbeat and the map |
 | `/srv/project-assistant/registry/knit-md-docx-rs.txt` | the registry entry the chief reads (outside the repository) |
 
