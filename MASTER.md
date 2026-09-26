@@ -1,6 +1,6 @@
 # knit-md-docx-rs — master
 
-> **last write-back: 2026-09-25T04:02:24+07** — integrity sweep: CODE_BREAKDOWN.md in knit-md-docx brought up to the language work (--lang, --version, document_lang, lang.rs, east_asian_compat); the carried NO-OUTBOUND warnings written down here and in knit-md-docx's MASTER.md; the os-config line points at K-003 in the ledger.
+> **last write-back: 2026-09-26T10:10:46+07** — R-1040 consolidation: nothing to move (no sources or deliverables; nothing in Files-dumps); docx-core/README.md recorded as a byte copy of README.md; knit-md-docx's CODE_BREAKDOWN.md points at its README for the East Asian flags instead of restating why.
 
 The owner's fork of [bokuweb/docx-rs](https://github.com/bokuweb/docx-rs), a `.docx` writer and
 reader in Rust. The crate in [`docx-core/`](docx-core/) is published under the package name
@@ -84,7 +84,7 @@ Directories, mapped as directories where they are upstream trees:
 
 | Directory or file | What it is |
 | --- | --- |
-| [`docx-core/`](docx-core/README.md) | the crate `knit-md-docx-rs`: `src/` (documents, reader, xml builder), `tests/`, `examples/`, `benches/`; its [`README.md`](docx-core/README.md) is the crates.io readme |
+| [`docx-core/`](docx-core/README.md) | the crate `knit-md-docx-rs`: `src/` (documents, reader, xml builder), `tests/`, `examples/`, `benches/`; its [`README.md`](docx-core/README.md) is the crates.io readme, a byte copy of the root [`README.md`](README.md) kept because cargo packages only files inside `docx-core/`; edit both together |
 | `docx-wasm/` | upstream's WebAssembly/JavaScript binding; not used by the pair |
 | `fixtures/` | `.docx` fixtures the reader tests open |
 | `docs/` | upstream's built demo page |
