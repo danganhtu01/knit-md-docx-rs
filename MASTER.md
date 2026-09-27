@@ -1,6 +1,6 @@
 # knit-md-docx-rs — master
 
-> **last write-back: 2026-09-26T10:10:46+07** — R-1040 consolidation: nothing to move (no sources or deliverables; nothing in Files-dumps); docx-core/README.md recorded as a byte copy of README.md; knit-md-docx's CODE_BREAKDOWN.md points at its README for the East Asian flags instead of restating why.
+> **last write-back: 2026-09-27T21:16:16+07** — R-1104 sweep: the os-config consumer line matched to terminal-config's pins.conf, which now pins the v0.2.0 release; claims rechecked (K-004's two branches exist, knit-md-docx PUBLIC, v0.2.0 assets served, DOCX_RS_REV on the fork's main).
 
 The owner's fork of [bokuweb/docx-rs](https://github.com/bokuweb/docx-rs), a `.docx` writer and
 reader in Rust. The crate in [`docx-core/`](docx-core/) is published under the package name
@@ -18,14 +18,15 @@ The owner calls the pair **knit-md-docx-rs**, and one assistant owns both reposi
 | `/srv/GitHub/knit-md-docx-rs` (this one, the hub) | the writer library, package `knit-md-docx-rs` | — |
 | `/srv/GitHub/knit-md-docx` (entry point `MASTER.md`) | the Markdown-to-docx converter `rust_knit_md_docx` and its CLI `knit-md-docx` | path dependency on `../knit-md-docx-rs/docx-core` |
 
-Consumers outside the pair, found from their code on 2026-09-24:
+Consumers outside the pair, found from their code (first 2026-09-24, rechecked 2026-09-27):
 
 - **ff-lc-app** — `rust_knit_md_docx` as a path dependency with `default-features = false`; its
   Dockerfile copies both repositories in as named build contexts, which is why each has a
   `.dockerignore`.
 - **llm-skills** — the `deutsch-perfekt-glossieren` skill knits with the `knit-md-docx` binary.
-- **os-config** — terminal-config is to install the CLI on every machine from its tagged GitHub
-  releases (built under K-003, now in [`TODO_LEDGER.csv`](TODO_LEDGER.csv)).
+- **os-config** — terminal-config installs the CLI on every machine from its tagged GitHub
+  releases, pinned in its `pins.conf` (`KNIT_MD_DOCX_PIN`, with each asset's SHA-256). The
+  release pipeline was built under K-003, now in [`TODO_LEDGER.csv`](TODO_LEDGER.csv).
 
 ## Where the state lives
 
