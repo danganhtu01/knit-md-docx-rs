@@ -1,6 +1,6 @@
 # knit-md-docx-rs — master
 
-> **last write-back: 2026-10-06T04:33:59+07** — R-1487 sweep: toolchain raised to Rust 1.99 (rust-toolchain; knit-md-docx rust-version 1.85 → 1.99), docx-core and docx-wasm moved to edition 2024 by `cargo fix --edition`, both lockfiles updated within semver, all tests pass on 1.99; upstream's JavaScript filed as K-005 for the owner's ruling.
+> **last write-back: 2026-10-06T05:05:11+07** — K-006 filed for the owner's ruling: 948d95e is authored by FinFan's Claude account (C-7, R-0410); not rewritten, as rewriting pushed history is his call. The R-1487 sweep before it raised Rust to 1.99 and edition 2024 and filed K-005.
 
 The owner's fork of [bokuweb/docx-rs](https://github.com/bokuweb/docx-rs), a `.docx` writer and
 reader in Rust. The crate in [`docx-core/`](docx-core/) is published under the package name
