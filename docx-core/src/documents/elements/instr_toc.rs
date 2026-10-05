@@ -192,7 +192,7 @@ impl BuildXML for InstrToC {
 
         // \f
         if let Some(ref t) = self.tc_field_identifier {
-            if let Some(ref t) = t {
+            if let Some(t) = t {
                 write!(raw, " \\f &quot;{}&quot;", t)?;
             } else {
                 write!(raw, " \\f")?;

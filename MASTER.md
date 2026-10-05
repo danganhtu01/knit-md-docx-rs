@@ -1,6 +1,6 @@
 # knit-md-docx-rs — master
 
-> **last write-back: 2026-09-27T21:16:16+07** — R-1104 sweep: the os-config consumer line matched to terminal-config's pins.conf, which now pins the v0.2.0 release; claims rechecked (K-004's two branches exist, knit-md-docx PUBLIC, v0.2.0 assets served, DOCX_RS_REV on the fork's main).
+> **last write-back: 2026-10-06T04:33:59+07** — R-1487 sweep: toolchain raised to Rust 1.99 (rust-toolchain; knit-md-docx rust-version 1.85 → 1.99), docx-core and docx-wasm moved to edition 2024 by `cargo fix --edition`, both lockfiles updated within semver, all tests pass on 1.99; upstream's JavaScript filed as K-005 for the owner's ruling.
 
 The owner's fork of [bokuweb/docx-rs](https://github.com/bokuweb/docx-rs), a `.docx` writer and
 reader in Rust. The crate in [`docx-core/`](docx-core/) is published under the package name
@@ -86,7 +86,7 @@ Directories, mapped as directories where they are upstream trees:
 | Directory or file | What it is |
 | --- | --- |
 | [`docx-core/`](docx-core/README.md) | the crate `knit-md-docx-rs`: `src/` (documents, reader, xml builder), `tests/`, `examples/`, `benches/`; its [`README.md`](docx-core/README.md) is the crates.io readme, a byte copy of the root [`README.md`](README.md) kept because cargo packages only files inside `docx-core/`; edit both together |
-| `docx-wasm/` | upstream's WebAssembly/JavaScript binding; not used by the pair |
+| `docx-wasm/` | upstream's WebAssembly/JavaScript binding; not used by the pair; whether its JavaScript stays waits on the owner (K-005 in [`TODO.csv`](TODO.csv)) |
 | `fixtures/` | `.docx` fixtures the reader tests open |
 | `docs/` | upstream's built demo page |
 | [`images/cat.jpeg`](images/cat.jpeg), [`images/cat_min.jpg`](images/cat_min.jpg) | images the examples embed |

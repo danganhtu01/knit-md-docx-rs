@@ -1154,16 +1154,16 @@ impl Docx {
             match child {
                 DocumentChild::Paragraph(paragraph) => {
                     for child in &mut paragraph.children {
-                        if let ParagraphChild::CommentStart(ref mut c) = child {
+                        if let ParagraphChild::CommentStart(c) = child {
                             let comment_id = c.get_id();
                             if let Some(comment) = comments.iter().find(|c| c.id() == comment_id) {
                                 let comment = comment.clone();
                                 c.as_mut().comment(comment);
                             }
                         }
-                        if let ParagraphChild::Insert(ref mut insert) = child {
+                        if let ParagraphChild::Insert(insert) = child {
                             for child in &mut insert.children {
-                                if let InsertChild::CommentStart(ref mut c) = child {
+                                if let InsertChild::CommentStart(c) = child {
                                     let comment_id = c.get_id();
                                     if let Some(comment) =
                                         comments.iter().find(|c| c.id() == comment_id)
@@ -1171,9 +1171,9 @@ impl Docx {
                                         let comment = comment.clone();
                                         c.as_mut().comment(comment);
                                     }
-                                } else if let InsertChild::Delete(ref mut d) = child {
+                                } else if let InsertChild::Delete(d) = child {
                                     for child in &mut d.children {
-                                        if let DeleteChild::CommentStart(ref mut c) = child {
+                                        if let DeleteChild::CommentStart(c) = child {
                                             let comment_id = c.get_id();
                                             if let Some(comment) =
                                                 comments.iter().find(|c| c.id() == comment_id)
@@ -1186,9 +1186,9 @@ impl Docx {
                                 }
                             }
                         }
-                        if let ParagraphChild::Delete(ref mut delete) = child {
+                        if let ParagraphChild::Delete(delete) = child {
                             for child in &mut delete.children {
-                                if let DeleteChild::CommentStart(ref mut c) = child {
+                                if let DeleteChild::CommentStart(c) = child {
                                     let comment_id = c.get_id();
                                     if let Some(comment) =
                                         comments.iter().find(|c| c.id() == comment_id)
@@ -1740,16 +1740,16 @@ fn collect_dependencies_in_table(
 
 fn store_comments_in_paragraph(paragraph: &mut Paragraph, comments: &[Comment]) {
     for child in &mut paragraph.children {
-        if let ParagraphChild::CommentStart(ref mut c) = child {
+        if let ParagraphChild::CommentStart(c) = child {
             let comment_id = c.get_id();
             if let Some(comment) = comments.iter().find(|c| c.id() == comment_id) {
                 let comment = comment.clone();
                 c.as_mut().comment(comment);
             }
         }
-        if let ParagraphChild::Insert(ref mut insert) = child {
+        if let ParagraphChild::Insert(insert) = child {
             for child in &mut insert.children {
-                if let InsertChild::CommentStart(ref mut c) = child {
+                if let InsertChild::CommentStart(c) = child {
                     let comment_id = c.get_id();
                     if let Some(comment) = comments.iter().find(|c| c.id() == comment_id) {
                         let comment = comment.clone();
@@ -1758,9 +1758,9 @@ fn store_comments_in_paragraph(paragraph: &mut Paragraph, comments: &[Comment]) 
                 }
             }
         }
-        if let ParagraphChild::Delete(ref mut delete) = child {
+        if let ParagraphChild::Delete(delete) = child {
             for child in &mut delete.children {
-                if let DeleteChild::CommentStart(ref mut c) = child {
+                if let DeleteChild::CommentStart(c) = child {
                     let comment_id = c.get_id();
                     if let Some(comment) = comments.iter().find(|c| c.id() == comment_id) {
                         let comment = comment.clone();
@@ -1780,10 +1780,10 @@ fn store_comments_in_table(table: &mut Table, comments: &[Comment]) {
                     TableCellContent::Paragraph(paragraph) => {
                         store_comments_in_paragraph(paragraph, comments)
                     }
-                    TableCellContent::Table(ref mut table) => {
+                    TableCellContent::Table(table) => {
                         store_comments_in_table(table, comments);
                     }
-                    TableCellContent::StructuredDataTag(ref mut tag) => {
+                    TableCellContent::StructuredDataTag(tag) => {
                         for child in &mut tag.children {
                             if let StructuredDataTagChild::Paragraph(paragraph) = child {
                                 store_comments_in_paragraph(paragraph, comments);
@@ -1793,7 +1793,7 @@ fn store_comments_in_table(table: &mut Table, comments: &[Comment]) {
                             }
                         }
                     }
-                    TableCellContent::TableOfContents(ref mut t) => {
+                    TableCellContent::TableOfContents(t) => {
                         for child in &mut t.before_contents {
                             if let TocContent::Paragraph(paragraph) = child {
                                 store_comments_in_paragraph(paragraph, comments);

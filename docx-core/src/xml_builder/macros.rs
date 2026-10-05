@@ -1,16 +1,16 @@
 macro_rules! open {
-    ($name: ident, $el_name: expr) => {
+    ($name: ident, $el_name: expr_2021) => {
         #[allow(dead_code)]
         pub(crate) fn $name(self) -> crate::xml::writer::Result<Self> {
             self.write(XmlEvent::start_element($el_name))
         }
     };
-    ($name: ident, $el_name: expr, $attr0: expr) => {
+    ($name: ident, $el_name: expr_2021, $attr0: expr_2021) => {
         pub(crate) fn $name(self, arg0: &str) -> crate::xml::writer::Result<Self> {
             self.write(XmlEvent::start_element($el_name).attr($attr0, arg0))
         }
     };
-    ($name: ident, $el_name: expr, $attr0: expr, $attr1: expr) => {
+    ($name: ident, $el_name: expr_2021, $attr0: expr_2021, $attr1: expr_2021) => {
         pub(crate) fn $name(self, arg0: &str, arg1: &str) -> crate::xml::writer::Result<Self> {
             self.write(
                 XmlEvent::start_element($el_name)
@@ -19,7 +19,7 @@ macro_rules! open {
             )
         }
     };
-    ($name: ident, $el_name: expr, $attr0: expr, $attr1: expr, $attr2: expr) => {
+    ($name: ident, $el_name: expr_2021, $attr0: expr_2021, $attr1: expr_2021, $attr2: expr_2021) => {
         pub(crate) fn $name(
             self,
             arg0: &str,
@@ -34,7 +34,7 @@ macro_rules! open {
             )
         }
     };
-    ($name: ident, $el_name: expr, $attr0: expr, $attr1: expr, $attr2: expr, $attr3: expr) => {
+    ($name: ident, $el_name: expr_2021, $attr0: expr_2021, $attr1: expr_2021, $attr2: expr_2021, $attr3: expr_2021) => {
         pub(crate) fn $name(
             self,
             arg0: &str,
@@ -51,7 +51,7 @@ macro_rules! open {
             )
         }
     };
-    ($name: ident, $el_name: expr, $attr0: expr, $attr1: expr, $attr2: expr, $attr3: expr, $attr4: expr) => {
+    ($name: ident, $el_name: expr_2021, $attr0: expr_2021, $attr1: expr_2021, $attr2: expr_2021, $attr3: expr_2021, $attr4: expr_2021) => {
         pub(crate) fn $name(
             self,
             arg0: &str,
@@ -70,7 +70,7 @@ macro_rules! open {
             )
         }
     };
-    ($name: ident, $el_name: expr, $attr0: expr, $attr1: expr, $attr2: expr, $attr3: expr, $attr4: expr, $attr5: expr) => {
+    ($name: ident, $el_name: expr_2021, $attr0: expr_2021, $attr1: expr_2021, $attr2: expr_2021, $attr3: expr_2021, $attr4: expr_2021, $attr5: expr_2021) => {
         pub(crate) fn $name(
             self,
             arg0: &str,
@@ -91,7 +91,7 @@ macro_rules! open {
             )
         }
     };
-    ($name: ident, $el_name: expr, $attr0: expr, $attr1: expr, $attr2: expr, $attr3: expr, $attr4: expr, $attr5: expr, $attr6: expr) => {
+    ($name: ident, $el_name: expr_2021, $attr0: expr_2021, $attr1: expr_2021, $attr2: expr_2021, $attr3: expr_2021, $attr4: expr_2021, $attr5: expr_2021, $attr6: expr_2021) => {
         pub(crate) fn $name(
             self,
             arg0: &str,
@@ -114,7 +114,7 @@ macro_rules! open {
             )
         }
     };
-    ($name: ident, $el_name: expr, $attr0: expr, $attr1: expr, $attr2: expr, $attr3: expr, $attr4: expr, $attr5: expr, $attr6: expr, $attr7: expr) => {
+    ($name: ident, $el_name: expr_2021, $attr0: expr_2021, $attr1: expr_2021, $attr2: expr_2021, $attr3: expr_2021, $attr4: expr_2021, $attr5: expr_2021, $attr6: expr_2021, $attr7: expr_2021) => {
         pub(crate) fn $name(
             self,
             arg0: &str,
@@ -139,7 +139,7 @@ macro_rules! open {
             )
         }
     };
-    ($name: ident, $el_name: expr, $attr0: expr, $attr1: expr, $attr2: expr, $attr3: expr, $attr4: expr, $attr5: expr, $attr6: expr, $attr7: expr, $attr8: expr) => {
+    ($name: ident, $el_name: expr_2021, $attr0: expr_2021, $attr1: expr_2021, $attr2: expr_2021, $attr3: expr_2021, $attr4: expr_2021, $attr5: expr_2021, $attr6: expr_2021, $attr7: expr_2021, $attr8: expr_2021) => {
         pub(crate) fn $name(
             self,
             arg0: &str,
@@ -166,7 +166,7 @@ macro_rules! open {
             )
         }
     };
-    ($name: ident, $el_name: expr, $attr0: expr, $attr1: expr, $attr2: expr, $attr3: expr, $attr4: expr, $attr5: expr, $attr6: expr, $attr7: expr, $attr8: expr, $attr9: expr) => {
+    ($name: ident, $el_name: expr_2021, $attr0: expr_2021, $attr1: expr_2021, $attr2: expr_2021, $attr3: expr_2021, $attr4: expr_2021, $attr5: expr_2021, $attr6: expr_2021, $attr7: expr_2021, $attr8: expr_2021, $attr9: expr_2021) => {
         #[allow(clippy::too_many_arguments)]
         pub(crate) fn $name(
             self,
@@ -196,7 +196,7 @@ macro_rules! open {
             )
         }
     };
-    ($name: ident, $el_name: expr, $attr0: expr, $attr1: expr, $attr2: expr, $attr3: expr, $attr4: expr, $attr5: expr, $attr6: expr, $attr7: expr, $attr8: expr, $attr9: expr, $attr10: expr) => {
+    ($name: ident, $el_name: expr_2021, $attr0: expr_2021, $attr1: expr_2021, $attr2: expr_2021, $attr3: expr_2021, $attr4: expr_2021, $attr5: expr_2021, $attr6: expr_2021, $attr7: expr_2021, $attr8: expr_2021, $attr9: expr_2021, $attr10: expr_2021) => {
         pub(crate) fn $name(
             self,
             arg0: &str,
@@ -230,7 +230,7 @@ macro_rules! open {
 }
 
 macro_rules! closed_with_child {
-    ($name: ident, $el_name: expr) => {
+    ($name: ident, $el_name: expr_2021) => {
         #[allow(dead_code)]
         pub(crate) fn $name(self, child: &str) -> crate::xml::writer::Result<Self> {
             self.write(XmlEvent::start_element($el_name))?
@@ -238,14 +238,14 @@ macro_rules! closed_with_child {
                 .close()
         }
     };
-    ($name: ident, $el_name: expr, $attr0: expr) => {
+    ($name: ident, $el_name: expr_2021, $attr0: expr_2021) => {
         pub(crate) fn $name(self, arg0: &str, child: &str) -> crate::xml::writer::Result<Self> {
             self.write(XmlEvent::start_element($el_name).attr($attr0, arg0))?
                 .write(child)?
                 .close()
         }
     };
-    ($name: ident, $el_name: expr, $attr0: expr, $attr1: expr) => {
+    ($name: ident, $el_name: expr_2021, $attr0: expr_2021, $attr1: expr_2021) => {
         pub(crate) fn $name(
             self,
             arg0: &str,
@@ -261,7 +261,7 @@ macro_rules! closed_with_child {
             .close()
         }
     };
-    ($name: ident, $el_name: expr, $attr0: expr, $attr1: expr, $attr2: expr) => {
+    ($name: ident, $el_name: expr_2021, $attr0: expr_2021, $attr1: expr_2021, $attr2: expr_2021) => {
         pub(crate) fn $name(
             self,
             arg0: &str,
@@ -282,13 +282,13 @@ macro_rules! closed_with_child {
 }
 
 macro_rules! closed {
-    ($name: ident, $el_name: expr) => {
+    ($name: ident, $el_name: expr_2021) => {
         #[allow(clippy::wrong_self_convention)]
         pub(crate) fn $name(self) -> crate::xml::writer::Result<Self> {
             self.write(XmlEvent::start_element($el_name))?.close()
         }
     };
-    ($name: ident, $el_name: expr, $attr0: expr) => {
+    ($name: ident, $el_name: expr_2021, $attr0: expr_2021) => {
         #[allow(clippy::wrong_self_convention)]
 
         pub(crate) fn $name(self, arg0: &str) -> crate::xml::writer::Result<Self> {
@@ -296,7 +296,7 @@ macro_rules! closed {
                 .close()
         }
     };
-    ($name: ident, $el_name: expr, $attr0: expr, $attr1: expr) => {
+    ($name: ident, $el_name: expr_2021, $attr0: expr_2021, $attr1: expr_2021) => {
         #[allow(dead_code)]
         #[allow(clippy::wrong_self_convention)]
         pub(crate) fn $name(self, arg0: &str, arg1: &str) -> crate::xml::writer::Result<Self> {
@@ -308,7 +308,7 @@ macro_rules! closed {
             .close()
         }
     };
-    ($name: ident, $el_name: expr, $attr0: expr, $attr1: expr, $attr2: expr) => {
+    ($name: ident, $el_name: expr_2021, $attr0: expr_2021, $attr1: expr_2021, $attr2: expr_2021) => {
         pub(crate) fn $name(
             self,
             arg0: &str,
@@ -324,7 +324,7 @@ macro_rules! closed {
             .close()
         }
     };
-    ($name: ident, $el_name: expr, $attr0: expr, $attr1: expr, $attr2: expr, $attr3: expr) => {
+    ($name: ident, $el_name: expr_2021, $attr0: expr_2021, $attr1: expr_2021, $attr2: expr_2021, $attr3: expr_2021) => {
         pub(crate) fn $name(
             self,
             arg0: &str,
@@ -342,7 +342,7 @@ macro_rules! closed {
             .close()
         }
     };
-    ($name: ident, $el_name: expr, $attr0: expr, $attr1: expr, $attr2: expr, $attr3: expr, $attr4: expr) => {
+    ($name: ident, $el_name: expr_2021, $attr0: expr_2021, $attr1: expr_2021, $attr2: expr_2021, $attr3: expr_2021, $attr4: expr_2021) => {
         pub(crate) fn $name(
             self,
             arg0: &str,
@@ -362,7 +362,7 @@ macro_rules! closed {
             .close()
         }
     };
-    ($name: ident, $el_name: expr, $attr0: expr, $attr1: expr, $attr2: expr, $attr3: expr, $attr4: expr, $attr5: expr) => {
+    ($name: ident, $el_name: expr_2021, $attr0: expr_2021, $attr1: expr_2021, $attr2: expr_2021, $attr3: expr_2021, $attr4: expr_2021, $attr5: expr_2021) => {
         pub(crate) fn $name(
             self,
             arg0: &str,
@@ -384,7 +384,7 @@ macro_rules! closed {
             .close()
         }
     };
-    ($name: ident, $el_name: expr, $attr0: expr, $attr1: expr, $attr2: expr, $attr3: expr, $attr4: expr, $attr5: expr, $attr6: expr) => {
+    ($name: ident, $el_name: expr_2021, $attr0: expr_2021, $attr1: expr_2021, $attr2: expr_2021, $attr3: expr_2021, $attr4: expr_2021, $attr5: expr_2021, $attr6: expr_2021) => {
         #[allow(clippy::too_many_arguments)]
         pub(crate) fn $name(
             self,
@@ -409,7 +409,7 @@ macro_rules! closed {
             .close()
         }
     };
-    ($name: ident, $el_name: expr, $attr0: expr, $attr1: expr, $attr2: expr, $attr3: expr, $attr4: expr, $attr5: expr, $attr6: expr, $attr7: expr) => {
+    ($name: ident, $el_name: expr_2021, $attr0: expr_2021, $attr1: expr_2021, $attr2: expr_2021, $attr3: expr_2021, $attr4: expr_2021, $attr5: expr_2021, $attr6: expr_2021, $attr7: expr_2021) => {
         #[allow(clippy::too_many_arguments)]
         pub(crate) fn $name(
             self,
@@ -436,7 +436,7 @@ macro_rules! closed {
             .close()
         }
     };
-    ($name: ident, $el_name: expr, $attr0: expr, $attr1: expr, $attr2: expr, $attr3: expr, $attr4: expr, $attr5: expr, $attr6: expr, $attr7: expr, $attr8: expr) => {
+    ($name: ident, $el_name: expr_2021, $attr0: expr_2021, $attr1: expr_2021, $attr2: expr_2021, $attr3: expr_2021, $attr4: expr_2021, $attr5: expr_2021, $attr6: expr_2021, $attr7: expr_2021, $attr8: expr_2021) => {
         #[allow(clippy::too_many_arguments)]
         pub(crate) fn $name(
             self,
@@ -468,7 +468,7 @@ macro_rules! closed {
 }
 
 macro_rules! closed_with_str {
-    ($name: ident, $el_name: expr) => {
+    ($name: ident, $el_name: expr_2021) => {
         #[allow(dead_code)]
         pub(crate) fn $name(self, val: &str) -> crate::xml::writer::Result<Self> {
             self.write(XmlEvent::start_element($el_name).attr("w:val", val))?
@@ -478,7 +478,7 @@ macro_rules! closed_with_str {
 }
 
 macro_rules! closed_with_usize {
-    ($name: ident, $el_name: expr) => {
+    ($name: ident, $el_name: expr_2021) => {
         pub(crate) fn $name(self, val: usize) -> crate::xml::writer::Result<Self> {
             self.write(XmlEvent::start_element($el_name).attr("w:val", &format!("{}", val)))?
                 .close()
@@ -487,7 +487,7 @@ macro_rules! closed_with_usize {
 }
 
 macro_rules! closed_with_isize {
-    ($name: ident, $el_name: expr) => {
+    ($name: ident, $el_name: expr_2021) => {
         pub(crate) fn $name(self, val: isize) -> crate::xml::writer::Result<Self> {
             self.write(XmlEvent::start_element($el_name).attr("w:val", &format!("{}", val)))?
                 .close()
@@ -496,7 +496,7 @@ macro_rules! closed_with_isize {
 }
 
 macro_rules! closed_w_with_type_el {
-    ($name: ident, $el_name: expr) => {
+    ($name: ident, $el_name: expr_2021) => {
         pub(crate) fn $name(self, w: i32, t: WidthType) -> crate::xml::writer::Result<Self> {
             self.write(
                 XmlEvent::start_element($el_name)
@@ -509,7 +509,7 @@ macro_rules! closed_w_with_type_el {
 }
 
 macro_rules! closed_border_el {
-    ($name: ident, $el_name: expr) => {
+    ($name: ident, $el_name: expr_2021) => {
         pub(crate) fn $name(
             self,
             val: BorderType,
@@ -530,7 +530,7 @@ macro_rules! closed_border_el {
 }
 
 macro_rules! closed_paragraph_border_el {
-    ($name: ident, $ el_name: expr) => {
+    ($name: ident, $ el_name: expr_2021) => {
         pub(crate) fn $name(
             self,
             val: &str,

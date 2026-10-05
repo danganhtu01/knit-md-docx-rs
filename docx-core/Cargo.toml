@@ -6,7 +6,7 @@ authors = [
   "danganhtu01 <admin@atdang.com>",
 ]
 repository = "https://github.com/danganhtu01/knit-md-docx-rs"
-edition = "2021"
+edition = "2024"
 license = "MIT"
 readme = "README.md"
 description = "A .docx writer (fork of docx-rs) with native OMML/oMath equations, run-level super/subscript, and paragraph borders for thematic breaks."
