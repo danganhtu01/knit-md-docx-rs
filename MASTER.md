@@ -1,6 +1,6 @@
 # knit-md-docx-rs — master
 
-> **last write-back: 2026-10-06T05:05:11+07** — K-006 filed for the owner's ruling: 948d95e is authored by FinFan's Claude account (C-7, R-0410); not rewritten, as rewriting pushed history is his call. The R-1487 sweep before it raised Rust to 1.99 and edition 2024 and filed K-005.
+> **last write-back: 2026-10-06T22:14:38+07** — R-1552: SOURCE.txt records the fork point, bokuweb/docx-rs@ab871c0 (MIT, taken 2026-06-09), read from the merge base with upstream's main; it and LICENSE are mapped below.
 
 The owner's fork of [bokuweb/docx-rs](https://github.com/bokuweb/docx-rs), a `.docx` writer and
 reader in Rust. The crate in [`docx-core/`](docx-core/) is published under the package name
@@ -62,7 +62,8 @@ Root files:
 | [`README.md`](README.md) | upstream's README with the fork notice; GitHub's front page |
 | [`CHANGELOG.md`](CHANGELOG.md) | upstream's changelog; the fork's changes are in git history |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | upstream's contribution guide |
-| [`LICENSE`](LICENSE) | MIT |
+| [`LICENSE`](LICENSE) | upstream's MIT licence, unchanged; [`docx-core/LICENSE`](docx-core/LICENSE) is a byte copy for the crates.io package |
+| [`SOURCE.txt`](SOURCE.txt) | where the fork came from: bokuweb/docx-rs at the fork point, its licence and the date taken; read it before changing upstream code |
 | [`Cargo.toml`](Cargo.toml), [`Cargo.lock`](Cargo.lock) | the workspace: `docx-core`, `docx-wasm` |
 | [`makefile`](makefile) | `test`, `lint`, and upstream's visual regression targets |
 | [`rust-toolchain`](rust-toolchain), [`rustfmt.toml`](rustfmt.toml) | toolchain pin and format settings |

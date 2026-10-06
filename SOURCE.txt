@@ -1,0 +1,12 @@
+source:   bokuweb/docx-rs@ab871c05ae9ba168df48076e40fafc48af06b1e8
+licence:  MIT
+taken:    2026-06-09
+changed:  the fork's commits after ab871c0 on main (git log ab871c0..main): OMML equations,
+          run-level superscript/subscript, paragraph borders, w:lang and the East Asian
+          compatibility switch, the crate renamed to knit-md-docx-rs, edition 2024 and Rust 1.99.
+          LICENSE is upstream's text unchanged; docx-core/LICENSE is a byte copy of it (a73f801),
+          kept so that the crates.io package carries the licence.
+
+Referenced by: MASTER.md (the map). The fork point is the merge base of main and upstream's
+main (https://github.com/bokuweb/docx-rs), read 2026-10-06; ab871c0 is upstream's commit of
+2026-06-08, and the fork's first own commit, f87faf6, is of 2026-06-09.
