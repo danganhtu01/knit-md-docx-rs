@@ -1,13 +1,23 @@
-# Files of upstream's code trees
+# Files of upstream's trees
 
-Referenced by: [`MASTER.md`](MASTER.md), which maps these trees by directory. This index lists every
-tracked file under `docx-core/` and `docx-wasm/`, under its directory. It is written by
-[`scripts/files-index.sh`](scripts/files-index.sh) from `git ls-files`; never edit it by hand. Run
-`sh scripts/files-index.sh` after an upstream merge or after adding or removing a file there, and
-`sh scripts/files-index.sh --check` to see whether it is current.
+Referenced by: [`MASTER.md`](MASTER.md), which maps these trees by directory. This index lists
+every tracked file under `docx-core/`, `docx-wasm/`, `fixtures/` and `docs/`, under its directory.
+It is written by [`scripts/files-index.sh`](scripts/files-index.sh) from `git ls-files`; never edit
+it by hand. Run `sh scripts/files-index.sh` after an upstream merge or after adding or removing a
+file there, and `sh scripts/files-index.sh --check` to see whether it is current.
 
-The fixtures, snapshots, test output and the built demo page are data, mapped as folders in
-`MASTER.md`, and are not listed here.
+The data (the fixtures, one section each; the snapshots; the test output; the built demo page) is
+listed too, so every file is mapped until check-graph accepts a folder row.
+
+## `docs/`
+
+Data: upstream's built demo page, webpack bundles and the wasm module.
+
+- `docs/0.index.js`
+- `docs/1.index.js`
+- `docs/cf1f90b2feef7ead7222.module.wasm`
+- `docs/index.html`
+- `docs/index.js`
 
 ## `docx-core/`
 
@@ -296,6 +306,13 @@ The default styles a new document carries.
 - `docx-core/src/documents/preset_styles/mod.rs`
 - `docx-core/src/documents/preset_styles/toc.rs`
 
+## `docx-core/src/documents/snapshots/`
+
+Data: snapshots the tests compare against (insta for Rust, Jest for the binding).
+
+- `docx-core/src/documents/snapshots/docx_rs__documents__comments_extended__tests__comments_extended_snapshot.snap`
+- `docx-core/src/documents/snapshots/docx_rs__documents__comments_extended__tests__settings.snap`
+
 ## `docx-core/src/errors/`
 
 The crate's error types.
@@ -495,6 +512,68 @@ Integration tests: writing and reading whole documents.
 
 - `docx-core/tests/lib.rs`
 - `docx-core/tests/reader.rs`
+
+## `docx-core/tests/output/`
+
+Data: a written document's parts, kept by upstream as test output.
+
+- `docx-core/tests/output/[Content_Types].xml`
+- `docx-core/tests/output/docProps/app.xml`
+- `docx-core/tests/output/docProps/core.xml`
+- `docx-core/tests/output/.keep`
+- `docx-core/tests/output/_rels/.rels`
+- `docx-core/tests/output/word/comments.xml`
+- `docx-core/tests/output/word/document.xml`
+- `docx-core/tests/output/word/fontTable.xml`
+- `docx-core/tests/output/word/numberings.xml`
+- `docx-core/tests/output/word/_rels/document.xml.rels`
+- `docx-core/tests/output/word/settings.xml`
+- `docx-core/tests/output/word/styles.xml`
+
+## `docx-core/tests/snapshots/`
+
+Data: snapshots the tests compare against (insta for Rust, Jest for the binding).
+
+- `docx-core/tests/snapshots/lib__reader__line_spacing.snap`
+- `docx-core/tests/snapshots/lib__reader__read_bom.snap`
+- `docx-core/tests/snapshots/lib__reader__read_bookmark.snap`
+- `docx-core/tests/snapshots/lib__reader__read_comment_in_delete_in_insert.snap`
+- `docx-core/tests/snapshots/lib__reader__read_comment.snap`
+- `docx-core/tests/snapshots/lib__reader__read_decoration.snap`
+- `docx-core/tests/snapshots/lib__reader__read_extended_comments.snap`
+- `docx-core/tests/snapshots/lib__reader__read_footnotes.snap`
+- `docx-core/tests/snapshots/lib__reader__read_from_doc.snap`
+- `docx-core/tests/snapshots/lib__reader__read_hello.snap`
+- `docx-core/tests/snapshots/lib__reader__read_highlight_and_underline.snap`
+- `docx-core/tests/snapshots/lib__reader__read_history.snap`
+- `docx-core/tests/snapshots/lib__reader__read_indent_word_online.snap`
+- `docx-core/tests/snapshots/lib__reader__read_insert_table.snap`
+- `docx-core/tests/snapshots/lib__reader__read_lvl_override.snap`
+- `docx-core/tests/snapshots/lib__reader__read_numbering.snap`
+- `docx-core/tests/snapshots/lib__reader__read_tab_and_break.snap`
+- `docx-core/tests/snapshots/lib__reader__read_table_docx.snap`
+- `docx-core/tests/snapshots/lib__reader__read_table_merged_libre_office.snap`
+- `docx-core/tests/snapshots/lib__reader__read_textbox.snap`
+- `docx-core/tests/snapshots/reader__line_spacing.snap`
+- `docx-core/tests/snapshots/reader__read_bom.snap`
+- `docx-core/tests/snapshots/reader__read_bookmark.snap`
+- `docx-core/tests/snapshots/reader__read_comment_in_delete_in_insert.snap`
+- `docx-core/tests/snapshots/reader__read_comment.snap`
+- `docx-core/tests/snapshots/reader__read_decoration.snap`
+- `docx-core/tests/snapshots/reader__read_extended_comments.snap`
+- `docx-core/tests/snapshots/reader__read_footnotes.snap`
+- `docx-core/tests/snapshots/reader__read_from_doc.snap`
+- `docx-core/tests/snapshots/reader__read_hello.snap`
+- `docx-core/tests/snapshots/reader__read_highlight_and_underline.snap`
+- `docx-core/tests/snapshots/reader__read_history.snap`
+- `docx-core/tests/snapshots/reader__read_indent_word_online.snap`
+- `docx-core/tests/snapshots/reader__read_insert_table.snap`
+- `docx-core/tests/snapshots/reader__read_lvl_override.snap`
+- `docx-core/tests/snapshots/reader__read_numbering.snap`
+- `docx-core/tests/snapshots/reader__read_tab_and_break.snap`
+- `docx-core/tests/snapshots/reader__read_table_docx.snap`
+- `docx-core/tests/snapshots/reader__read_table_merged_libre_office.snap`
+- `docx-core/tests/snapshots/reader__read_textbox.snap`
 
 ## `docx-wasm/`
 
@@ -753,3 +832,880 @@ The binding's Jest tests and the folder they write into.
 The binding's Jest tests and the folder they write into.
 
 - `docx-wasm/test/output/.keep`
+
+## `docx-wasm/test/__snapshots__/`
+
+Data: snapshots the tests compare against (insta for Rust, Jest for the binding).
+
+- `docx-wasm/test/__snapshots__/index.test.js.snap`
+
+## `fixtures/after_lines/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/after_lines/after_lines.docx`
+
+## `fixtures/bom/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/bom/bom.docx`
+
+## `fixtures/bookmark/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/bookmark/bookmark.docx`
+- `fixtures/bookmark/[Content_Types].xml`
+- `fixtures/bookmark/docProps/app.xml`
+- `fixtures/bookmark/docProps/core.xml`
+- `fixtures/bookmark/_rels/.rels`
+- `fixtures/bookmark/word/document.xml`
+- `fixtures/bookmark/word/fontTable.xml`
+- `fixtures/bookmark/word/_rels/document.xml.rels`
+- `fixtures/bookmark/word/settings.xml`
+- `fixtures/bookmark/word/styles.xml`
+
+## `fixtures/comment/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/comment/cat.jpeg`
+- `fixtures/comment/comment.docx`
+- `fixtures/comment/[Content_Types].xml`
+- `fixtures/comment/docProps/app.xml`
+- `fixtures/comment/docProps/core.xml`
+- `fixtures/comment/_rels/.rels`
+- `fixtures/comment/word/comments.xml`
+- `fixtures/comment/word/document.xml`
+- `fixtures/comment/word/fontTable.xml`
+- `fixtures/comment/word/_rels/document.xml.rels`
+- `fixtures/comment/word/settings.xml`
+- `fixtures/comment/word/styles.xml`
+
+## `fixtures/comment_in_delete_in_insert/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/comment_in_delete_in_insert/comment_in_delete_in_insert.docx`
+
+## `fixtures/custom/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/custom/custom.docx`
+
+## `fixtures/decoration/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/decoration/[Content_Types].xml`
+- `fixtures/decoration/decoration.docx`
+- `fixtures/decoration/docProps/app.xml`
+- `fixtures/decoration/docProps/core.xml`
+- `fixtures/decoration/_rels/.rels`
+- `fixtures/decoration/word/document.xml`
+- `fixtures/decoration/word/fontTable.xml`
+- `fixtures/decoration/word/_rels/document.xml.rels`
+- `fixtures/decoration/word/settings.xml`
+- `fixtures/decoration/word/styles.xml`
+
+## `fixtures/default_line_spacing/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/default_line_spacing/default_line_spacing.docx`
+
+## `fixtures/del_in_ins/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/del_in_ins/del_in_ins.docx`
+
+## `fixtures/div/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/div/[Content_Types].xml`
+- `fixtures/div/div.docx`
+- `fixtures/div/docProps/app.xml`
+- `fixtures/div/docProps/core.xml`
+- `fixtures/div/_rels/.rels`
+- `fixtures/div/word/document.xml`
+- `fixtures/div/word/fontTable.xml`
+- `fixtures/div/word/_rels/document.xml.rels`
+- `fixtures/div/word/settings.xml`
+- `fixtures/div/word/styles.xml`
+- `fixtures/div/word/theme/theme1.xml`
+- `fixtures/div/word/webextensions/_rels/taskpanes.xml.rels`
+- `fixtures/div/word/webextensions/taskpanes.xml`
+- `fixtures/div/word/webextensions/webextension1.xml`
+- `fixtures/div/word/webSettings.xml`
+
+## `fixtures/dstrike/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/dstrike/dstrike.docx`
+
+## `fixtures/extended_comments/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/extended_comments/[Content_Types].xml`
+- `fixtures/extended_comments/docProps/app.xml`
+- `fixtures/extended_comments/docProps/core.xml`
+- `fixtures/extended_comments/extended_comments.docx`
+- `fixtures/extended_comments/_rels/.rels`
+- `fixtures/extended_comments/word/commentsExtended.xml`
+- `fixtures/extended_comments/word/comments.xml`
+- `fixtures/extended_comments/word/document.xml`
+- `fixtures/extended_comments/word/fontTable.xml`
+- `fixtures/extended_comments/word/header1.xml`
+- `fixtures/extended_comments/word/numbering.xml`
+- `fixtures/extended_comments/word/_rels/document.xml.rels`
+- `fixtures/extended_comments/word/settings.xml`
+- `fixtures/extended_comments/word/styles.xml`
+
+## `fixtures/first_even_header/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/first_even_header/first_even_header.docx`
+
+## `fixtures/font/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/font/font.docx`
+
+## `fixtures/footer/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/footer/footer.docx`
+
+## `fixtures/footnotes/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/footnotes/footnotes.docx`
+
+## `fixtures/from_doc/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/from_doc/from_doc.docx`
+
+## `fixtures/grid_after/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/grid_after/grid_after.docx`
+
+## `fixtures/header_footer/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/header_footer/[Content_Types].xml`
+- `fixtures/header_footer/docProps/app.xml`
+- `fixtures/header_footer/docProps/core.xml`
+- `fixtures/header_footer/header_footer.docx`
+- `fixtures/header_footer/_rels/.rels`
+- `fixtures/header_footer/word/document.xml`
+- `fixtures/header_footer/word/fontTable.xml`
+- `fixtures/header_footer/word/footer1.xml`
+- `fixtures/header_footer/word/header1.xml`
+- `fixtures/header_footer/word/_rels/document.xml.rels`
+- `fixtures/header_footer/word/settings.xml`
+- `fixtures/header_footer/word/styles.xml`
+
+## `fixtures/hello_libre_office/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/hello_libre_office/[Content_Types].xml`
+- `fixtures/hello_libre_office/docProps/app.xml`
+- `fixtures/hello_libre_office/docProps/core.xml`
+- `fixtures/hello_libre_office/hello.docx`
+- `fixtures/hello_libre_office/_rels/.rels`
+- `fixtures/hello_libre_office/word/document.xml`
+- `fixtures/hello_libre_office/word/fontTable.xml`
+- `fixtures/hello_libre_office/word/_rels/document.xml.rels`
+- `fixtures/hello_libre_office/word/settings.xml`
+- `fixtures/hello_libre_office/word/styles.xml`
+
+## `fixtures/hello_world/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/hello_world/[Content_Types].xml`
+- `fixtures/hello_world/docProps/app.xml`
+- `fixtures/hello_world/docProps/core.xml`
+- `fixtures/hello_world/hello_world.docx`
+- `fixtures/hello_world/_rels/.rels`
+- `fixtures/hello_world/word/document.xml`
+- `fixtures/hello_world/word/footer1.xml`
+- `fixtures/hello_world/word/footnotes.xml`
+- `fixtures/hello_world/word/header1.xml`
+- `fixtures/hello_world/word/numbering.xml`
+- `fixtures/hello_world/word/_rels/footer1.xml.rels`
+- `fixtures/hello_world/word/_rels/header1.xml.rels`
+- `fixtures/hello_world/word/styles.xml`
+
+## `fixtures/hidden/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/hidden/[Content_Types].xml`
+- `fixtures/hidden/docProps/app.xml`
+- `fixtures/hidden/docProps/core.xml`
+- `fixtures/hidden/hidden.docx`
+- `fixtures/hidden/_rels/.rels`
+- `fixtures/hidden/word/document.xml`
+- `fixtures/hidden/word/fontTable.xml`
+- `fixtures/hidden/word/_rels/document.xml.rels`
+- `fixtures/hidden/word/settings.xml`
+- `fixtures/hidden/word/styles.xml`
+
+## `fixtures/highlight_and_underline/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/highlight_and_underline/[Content_Types].xml`
+- `fixtures/highlight_and_underline/docProps/app.xml`
+- `fixtures/highlight_and_underline/docProps/core.xml`
+- `fixtures/highlight_and_underline/highlight_and_underline.docx`
+- `fixtures/highlight_and_underline/_rels/.rels`
+- `fixtures/highlight_and_underline/word/document.xml`
+- `fixtures/highlight_and_underline/word/fontTable.xml`
+- `fixtures/highlight_and_underline/word/_rels/document.xml.rels`
+- `fixtures/highlight_and_underline/word/settings.xml`
+- `fixtures/highlight_and_underline/word/styles.xml`
+
+## `fixtures/history_libre_office/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/history_libre_office/[Content_Types].xml`
+- `fixtures/history_libre_office/docProps/app.xml`
+- `fixtures/history_libre_office/docProps/core.xml`
+- `fixtures/history_libre_office/history.docx`
+- `fixtures/history_libre_office/_rels/.rels`
+- `fixtures/history_libre_office/word/document.xml`
+- `fixtures/history_libre_office/word/fontTable.xml`
+- `fixtures/history_libre_office/word/_rels/document.xml.rels`
+- `fixtures/history_libre_office/word/settings.xml`
+- `fixtures/history_libre_office/word/styles.xml`
+
+## `fixtures/image/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/image/[Content_Types].xml`
+- `fixtures/image/docProps/app.xml`
+- `fixtures/image/docProps/core.xml`
+- `fixtures/image/image.docx`
+- `fixtures/image/_rels/.rels`
+- `fixtures/image/word/document.xml`
+- `fixtures/image/word/fontTable.xml`
+- `fixtures/image/word/media/image1.png`
+- `fixtures/image/word/_rels/document.xml.rels`
+- `fixtures/image/word/settings.xml`
+- `fixtures/image/word/styles.xml`
+
+## `fixtures/image_inline_and_anchor/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/image_inline_and_anchor/image_inline_and_anchor.docx`
+
+## `fixtures/image_in_textbox/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/image_in_textbox/[Content_Types].xml`
+- `fixtures/image_in_textbox/docProps/app.xml`
+- `fixtures/image_in_textbox/docProps/core.xml`
+- `fixtures/image_in_textbox/image_in_textbox.docx`
+- `fixtures/image_in_textbox/_rels/.rels`
+- `fixtures/image_in_textbox/word/document.xml`
+- `fixtures/image_in_textbox/word/fontTable.xml`
+- `fixtures/image_in_textbox/word/media/image1.png`
+- `fixtures/image_in_textbox/word/_rels/document.xml.rels`
+- `fixtures/image_in_textbox/word/settings.xml`
+- `fixtures/image_in_textbox/word/styles.xml`
+- `fixtures/image_in_textbox/word/theme/theme1.xml`
+- `fixtures/image_in_textbox/word/webSettings.xml`
+
+## `fixtures/image_node_docx/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/image_node_docx/[Content_Types].xml`
+- `fixtures/image_node_docx/docProps/app.xml`
+- `fixtures/image_node_docx/docProps/core.xml`
+- `fixtures/image_node_docx/image.docx`
+- `fixtures/image_node_docx/_rels/.rels`
+- `fixtures/image_node_docx/word/document.xml`
+- `fixtures/image_node_docx/word/footer1.xml`
+- `fixtures/image_node_docx/word/footnotes.xml`
+- `fixtures/image_node_docx/word/header1.xml`
+- `fixtures/image_node_docx/word/media/2mhefq5b7fsoxmjaoiuyb.png`
+- `fixtures/image_node_docx/word/media/40yrczdu6ohoeqs2cg2n4h.png`
+- `fixtures/image_node_docx/word/media/oja94skc7s5oq9avc9zyf.png`
+- `fixtures/image_node_docx/word/media/vpvf42pjbjmb5zjs1nsbb.png`
+- `fixtures/image_node_docx/word/numbering.xml`
+- `fixtures/image_node_docx/word/_rels/document.xml.rels`
+- `fixtures/image_node_docx/word/_rels/footer1.xml.rels`
+- `fixtures/image_node_docx/word/_rels/header1.xml.rels`
+- `fixtures/image_node_docx/word/settings.xml`
+- `fixtures/image_node_docx/word/styles.xml`
+
+## `fixtures/image_node_docx_floating/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/image_node_docx_floating/[Content_Types].xml`
+- `fixtures/image_node_docx_floating/docProps/app.xml`
+- `fixtures/image_node_docx_floating/docProps/core.xml`
+- `fixtures/image_node_docx_floating/image.docx`
+- `fixtures/image_node_docx_floating/_rels/.rels`
+- `fixtures/image_node_docx_floating/word/document.xml`
+- `fixtures/image_node_docx_floating/word/footer1.xml`
+- `fixtures/image_node_docx_floating/word/footnotes.xml`
+- `fixtures/image_node_docx_floating/word/header1.xml`
+- `fixtures/image_node_docx_floating/word/media/dy29bt3j1idb692k2uzxlj.png`
+- `fixtures/image_node_docx_floating/word/numbering.xml`
+- `fixtures/image_node_docx_floating/word/_rels/document.xml.rels`
+- `fixtures/image_node_docx_floating/word/_rels/footer1.xml.rels`
+- `fixtures/image_node_docx_floating/word/_rels/header1.xml.rels`
+- `fixtures/image_node_docx_floating/word/settings.xml`
+- `fixtures/image_node_docx_floating/word/styles.xml`
+
+## `fixtures/image_node_docx_relative/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/image_node_docx_relative/[Content_Types].xml`
+- `fixtures/image_node_docx_relative/docProps/app.xml`
+- `fixtures/image_node_docx_relative/docProps/core.xml`
+- `fixtures/image_node_docx_relative/image.docx`
+- `fixtures/image_node_docx_relative/_rels/.rels`
+- `fixtures/image_node_docx_relative/word/document.xml`
+- `fixtures/image_node_docx_relative/word/footer1.xml`
+- `fixtures/image_node_docx_relative/word/footnotes.xml`
+- `fixtures/image_node_docx_relative/word/header1.xml`
+- `fixtures/image_node_docx_relative/word/media/b7yx0qt3xx9yzh99bhv8d.png`
+- `fixtures/image_node_docx_relative/word/numbering.xml`
+- `fixtures/image_node_docx_relative/word/_rels/document.xml`
+- `fixtures/image_node_docx_relative/word/_rels/footer1.xml.rels`
+- `fixtures/image_node_docx_relative/word/_rels/header1.xml.rels`
+- `fixtures/image_node_docx_relative/word/settings.xml`
+- `fixtures/image_node_docx_relative/word/styles.xml`
+
+## `fixtures/image_output/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/image_output/image.docx`
+
+## `fixtures/image_output_resized/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/image_output_resized/[Content_Types].xml`
+- `fixtures/image_output_resized/docProps/app.xml`
+- `fixtures/image_output_resized/docProps/core.xml`
+- `fixtures/image_output_resized/image.docx`
+- `fixtures/image_output_resized/_rels/.rels`
+- `fixtures/image_output_resized/word/comments.xml`
+- `fixtures/image_output_resized/word/document.xml`
+- `fixtures/image_output_resized/word/fontTable.xml`
+- `fixtures/image_output_resized/word/media/image1.jpg`
+- `fixtures/image_output_resized/word/numbering.xml`
+- `fixtures/image_output_resized/word/_rels/document.xml.rels`
+- `fixtures/image_output_resized/word/settings.xml`
+- `fixtures/image_output_resized/word/styles.xml`
+- `fixtures/image_output_resized/word/theme/theme1.xml`
+- `fixtures/image_output_resized/word/webSettings.xml`
+
+## `fixtures/image_xml/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/image_xml/image.xml`
+
+## `fixtures/indent_word_online/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/indent_word_online/[Content_Types].xml`
+- `fixtures/indent_word_online/docProps/app.xml`
+- `fixtures/indent_word_online/docProps/core.xml`
+- `fixtures/indent_word_online/indent.docx`
+- `fixtures/indent_word_online/_rels/.rels`
+- `fixtures/indent_word_online/word/document.xml`
+- `fixtures/indent_word_online/word/fontTable.xml`
+- `fixtures/indent_word_online/word/_rels/document2.xml.rels`
+- `fixtures/indent_word_online/word/_rels/document.xml.rels`
+- `fixtures/indent_word_online/word/settings.xml`
+- `fixtures/indent_word_online/word/styles.xml`
+- `fixtures/indent_word_online/word/theme/theme1.xml`
+- `fixtures/indent_word_online/word/webSettings.xml`
+
+## `fixtures/insert_table/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/insert_table/insert_table.docx`
+
+## `fixtures/instr_links/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/instr_links/instr_links.docx`
+
+## `fixtures/issue554/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/issue554/issue554.docx`
+
+## `fixtures/line_spacing/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/line_spacing/line_spacing.docx`
+
+## `fixtures/link/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/link/[Content_Types].xml`
+- `fixtures/link/docProps/app.xml`
+- `fixtures/link/docProps/core.xml`
+- `fixtures/link/link.docx`
+- `fixtures/link/_rels/.rels`
+- `fixtures/link/word/document.xml`
+- `fixtures/link/word/fontTable.xml`
+- `fixtures/link/word/_rels/document.xml.rels`
+- `fixtures/link/word/settings.xml`
+- `fixtures/link/word/styles.xml`
+- `fixtures/link/word/theme/theme1.xml`
+- `fixtures/link/word/webSettings.xml`
+
+## `fixtures/lvl_override/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/lvl_override/app.xml`
+- `fixtures/lvl_override/[Content_Types].xml`
+- `fixtures/lvl_override/core.xml`
+- `fixtures/lvl_override/document.xml`
+- `fixtures/lvl_override/fontTable.xml`
+- `fixtures/lvl_override/numbering.xml`
+- `fixtures/lvl_override/override.docx`
+- `fixtures/lvl_override/.rels`
+- `fixtures/lvl_override/settings.xml`
+- `fixtures/lvl_override/styles.xml`
+- `fixtures/lvl_override/webSettings.xml`
+
+## `fixtures/multi_paragraph_comment/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/multi_paragraph_comment/multi_paragraph_comment.docx`
+
+## `fixtures/nested_comments/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/nested_comments/[Content_Types].xml`
+- `fixtures/nested_comments/docProps/app.xml`
+- `fixtures/nested_comments/docProps/core.xml`
+- `fixtures/nested_comments/nested_comments.docx`
+- `fixtures/nested_comments/_rels/.rels`
+- `fixtures/nested_comments/word/commentsExtended.xml`
+- `fixtures/nested_comments/word/commentsExtensible.xml`
+- `fixtures/nested_comments/word/commentsIds.xml`
+- `fixtures/nested_comments/word/comments.xml`
+- `fixtures/nested_comments/word/document.xml`
+- `fixtures/nested_comments/word/fontTable.xml`
+- `fixtures/nested_comments/word/people.xml`
+- `fixtures/nested_comments/word/_rels/document.xml.rels`
+- `fixtures/nested_comments/word/settings.xml`
+- `fixtures/nested_comments/word/styles.xml`
+- `fixtures/nested_comments/word/theme/theme1.xml`
+- `fixtures/nested_comments/word/webSettings.xml`
+
+## `fixtures/nested_table/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/nested_table/nested_table.docx`
+
+## `fixtures/numbering/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/numbering/[Content_Types].xml`
+- `fixtures/numbering/docProps/app.xml`
+- `fixtures/numbering/docProps/core.xml`
+- `fixtures/numbering/numbering.docx`
+- `fixtures/numbering/_rels/.rels`
+- `fixtures/numbering/word/document.xml`
+- `fixtures/numbering/word/fontTable.xml`
+- `fixtures/numbering/word/numbering.xml`
+- `fixtures/numbering/word/_rels/document.xml.rels`
+- `fixtures/numbering/word/settings.xml`
+- `fixtures/numbering/word/styles.xml`
+
+## `fixtures/outline_lvl/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/outline_lvl/outline_lvl.docx`
+
+## `fixtures/page_num_in_header/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/page_num_in_header/page_num_in_header.docx`
+
+## `fixtures/paragraph/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/paragraph/[Content_Types].xml`
+- `fixtures/paragraph/docProps/app.xml`
+- `fixtures/paragraph/docProps/core.xml`
+- `fixtures/paragraph/paragraph.docx`
+- `fixtures/paragraph/_rels/.rels`
+- `fixtures/paragraph/word/document.xml`
+- `fixtures/paragraph/word/fontTable.xml`
+- `fixtures/paragraph/word/numbering.xml`
+- `fixtures/paragraph/word/_rels/document.xml.rels`
+- `fixtures/paragraph/word/settings.xml`
+- `fixtures/paragraph/word/styles.xml`
+
+## `fixtures/paragraph_property_change/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/paragraph_property_change/paragraph_property_change.docx`
+
+## `fixtures/ptab/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/ptab/ptab.docx`
+
+## `fixtures/read_hang/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/read_hang/read_hang.docx`
+
+## `fixtures/run_property_change/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/run_property_change/ignore.docx`
+
+## `fixtures/run_props/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/run_props/[Content_Types].xml`
+- `fixtures/run_props/docProps/app.xml`
+- `fixtures/run_props/docProps/core.xml`
+- `fixtures/run_props/_rels/.rels`
+- `fixtures/run_props/run_props.docx`
+- `fixtures/run_props/word/document.xml`
+- `fixtures/run_props/word/fontTable.xml`
+- `fixtures/run_props/word/_rels/document.xml.rels`
+- `fixtures/run_props/word/settings.xml`
+- `fixtures/run_props/word/styles.xml`
+
+## `fixtures/section_current/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/section_current/[Content_Types].xml`
+- `fixtures/section_current/docProps/app.xml`
+- `fixtures/section_current/docProps/core.xml`
+- `fixtures/section_current/_rels/.rels`
+- `fixtures/section_current/word/document.xml`
+- `fixtures/section_current/word/fontTable.xml`
+- `fixtures/section_current/word/_rels/document.xml.rels`
+- `fixtures/section_current/word/settings.xml`
+- `fixtures/section_current/word/styles.xml`
+- `fixtures/section_current/word/theme/theme1.xml`
+- `fixtures/section_current/word/webSettings.xml`
+
+## `fixtures/section_even_page/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/section_even_page/[Content_Types].xml`
+- `fixtures/section_even_page/docProps/app.xml`
+- `fixtures/section_even_page/docProps/core.xml`
+- `fixtures/section_even_page/_rels/.rels`
+- `fixtures/section_even_page/word/document.xml`
+- `fixtures/section_even_page/word/endnotes.xml`
+- `fixtures/section_even_page/word/fontTable.xml`
+- `fixtures/section_even_page/word/footer1.xml`
+- `fixtures/section_even_page/word/footer2.xml`
+- `fixtures/section_even_page/word/footer3.xml`
+- `fixtures/section_even_page/word/footnotes.xml`
+- `fixtures/section_even_page/word/header1.xml`
+- `fixtures/section_even_page/word/header2.xml`
+- `fixtures/section_even_page/word/header3.xml`
+- `fixtures/section_even_page/word/header4.xml`
+- `fixtures/section_even_page/word/header5.xml`
+- `fixtures/section_even_page/word/_rels/document.xml.rels`
+- `fixtures/section_even_page/word/settings.xml`
+- `fixtures/section_even_page/word/styles.xml`
+- `fixtures/section_even_page/word/theme/theme1.xml`
+- `fixtures/section_even_page/word/webSettings.xml`
+
+## `fixtures/section_next_page/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/section_next_page/word/settings.xml`
+
+## `fixtures/section_property_in_ppr/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/section_property_in_ppr/section_property_in_ppr.docx`
+
+## `fixtures/shape/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/shape/shape.docx`
+
+## `fixtures/spacing/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/spacing/[Content_Types].xml`
+- `fixtures/spacing/docProps/app.xml`
+- `fixtures/spacing/docProps/core.xml`
+- `fixtures/spacing/_rels/.rels`
+- `fixtures/spacing/word/document.xml`
+- `fixtures/spacing/word/fontTable.xml`
+- `fixtures/spacing/word/_rels/document.xml.rels`
+- `fixtures/spacing/word/settings.xml`
+- `fixtures/spacing/word/styles.xml`
+- `fixtures/spacing/word/theme/theme1.xml`
+- `fixtures/spacing/word/webSettings.xml`
+
+## `fixtures/spec_vanish/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/spec_vanish/spec_vanish.docx`
+
+## `fixtures/strike/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/strike/strike.docx`
+
+## `fixtures/tab_and_break/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/tab_and_break/[Content_Types].xml`
+- `fixtures/tab_and_break/docProps/app.xml`
+- `fixtures/tab_and_break/docProps/core.xml`
+- `fixtures/tab_and_break/_rels/.rels`
+- `fixtures/tab_and_break/tab_and_break.docx`
+- `fixtures/tab_and_break/word/document.xml`
+- `fixtures/tab_and_break/word/fontTable.xml`
+- `fixtures/tab_and_break/word/_rels/document.xml.rels`
+- `fixtures/tab_and_break/word/settings.xml`
+- `fixtures/tab_and_break/word/styles.xml`
+
+## `fixtures/table_border/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/table_border/[Content_Types].xml`
+- `fixtures/table_border/docProps/app.xml`
+- `fixtures/table_border/docProps/core.xml`
+- `fixtures/table_border/_rels/.rels`
+- `fixtures/table_border/table_border.docx`
+- `fixtures/table_border/word/document.xml`
+- `fixtures/table_border/word/fontTable.xml`
+- `fixtures/table_border/word/_rels/document.xml.rels`
+- `fixtures/table_border/word/settings.xml`
+- `fixtures/table_border/word/styles.xml`
+- `fixtures/table_border/word/theme/theme1.xml`
+- `fixtures/table_border/word/webSettings.xml`
+
+## `fixtures/table_docx/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/table_docx/[Content_Types].xml`
+- `fixtures/table_docx/docProps/app.xml`
+- `fixtures/table_docx/docProps/core.xml`
+- `fixtures/table_docx/_rels/.rels`
+- `fixtures/table_docx/table.docx`
+- `fixtures/table_docx/word/document.xml`
+- `fixtures/table_docx/word/footer1.xml`
+- `fixtures/table_docx/word/footnotes.xml`
+- `fixtures/table_docx/word/header1.xml`
+- `fixtures/table_docx/word/numbering.xml`
+- `fixtures/table_docx/word/_rels/document.xml.rels`
+- `fixtures/table_docx/word/_rels/footer1.xml.rels`
+- `fixtures/table_docx/word/_rels/header1.xml.rels`
+- `fixtures/table_docx/word/settings.xml`
+- `fixtures/table_docx/word/styles.xml`
+
+## `fixtures/table_indent/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/table_indent/table_indent.docx`
+
+## `fixtures/table_libre_office/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/table_libre_office/[Content_Types].xml`
+- `fixtures/table_libre_office/docProps/app.xml`
+- `fixtures/table_libre_office/docProps/core.xml`
+- `fixtures/table_libre_office/_rels/.rels`
+- `fixtures/table_libre_office/table.docx`
+- `fixtures/table_libre_office/word/document.xml`
+- `fixtures/table_libre_office/word/fontTable.xml`
+- `fixtures/table_libre_office/word/_rels/document.xml.rels`
+- `fixtures/table_libre_office/word/settings.xml`
+- `fixtures/table_libre_office/word/styles.xml`
+
+## `fixtures/table_merged_libre_office/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/table_merged_libre_office/[Content_Types].xml`
+- `fixtures/table_merged_libre_office/docProps/app.xml`
+- `fixtures/table_merged_libre_office/docProps/core.xml`
+- `fixtures/table_merged_libre_office/_rels/.rels`
+- `fixtures/table_merged_libre_office/table_merged.docx`
+- `fixtures/table_merged_libre_office/word/document.xml`
+- `fixtures/table_merged_libre_office/word/fontTable.xml`
+- `fixtures/table_merged_libre_office/word/_rels/document.xml.rels`
+- `fixtures/table_merged_libre_office/word/settings.xml`
+- `fixtures/table_merged_libre_office/word/styles.xml`
+
+## `fixtures/table_style/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/table_style/table_style.docx`
+
+## `fixtures/table_valign/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/table_valign/[Content_Types].xml`
+- `fixtures/table_valign/docProps/app.xml`
+- `fixtures/table_valign/docProps/core.xml`
+- `fixtures/table_valign/_rels/.rels`
+- `fixtures/table_valign/table_valign.docx`
+- `fixtures/table_valign/word/document.xml`
+- `fixtures/table_valign/word/fontTable.xml`
+- `fixtures/table_valign/word/_rels/document.xml.rels`
+- `fixtures/table_valign/word/settings.xml`
+- `fixtures/table_valign/word/styles.xml`
+
+## `fixtures/table_word_online/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/table_word_online/[Content_Types].xml`
+- `fixtures/table_word_online/docProps/app.xml`
+- `fixtures/table_word_online/docProps/core.xml`
+- `fixtures/table_word_online/_rels/.rels`
+- `fixtures/table_word_online/table.docx`
+- `fixtures/table_word_online/word/document2.xml`
+- `fixtures/table_word_online/word/fontTable.xml`
+- `fixtures/table_word_online/word/_rels/document2.xml.rels`
+- `fixtures/table_word_online/word/settings.xml`
+- `fixtures/table_word_online/word/styles.xml`
+- `fixtures/table_word_online/word/theme/theme1.xml`
+- `fixtures/table_word_online/word/webSettings.xml`
+
+## `fixtures/textbox/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/textbox/[Content_Types].xml`
+- `fixtures/textbox/customXml/item1.xml`
+- `fixtures/textbox/customXml/itemProps1.xml`
+- `fixtures/textbox/customXml/_rels/item1.xml.rels`
+- `fixtures/textbox/docProps/app.xml`
+- `fixtures/textbox/docProps/core.xml`
+- `fixtures/textbox/_rels/.rels`
+- `fixtures/textbox/textbox.docx`
+- `fixtures/textbox/word/document.xml`
+- `fixtures/textbox/word/fontTable.xml`
+- `fixtures/textbox/word/_rels/document.xml.rels`
+- `fixtures/textbox/word/settings.xml`
+- `fixtures/textbox/word/styles.xml`
+- `fixtures/textbox/word/theme/theme1.xml`
+- `fixtures/textbox/word/webSettings.xml`
+
+## `fixtures/toc0/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/toc0/toc0.docx`
+
+## `fixtures/toc1/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/toc1/toc1.docx`
+
+## `fixtures/tr2bl/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/tr2bl/tr2bl.docx`
+
+## `fixtures/vert_align/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/vert_align/vert_align.docx`
+
+## `fixtures/without_numid/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/without_numid/without_numid.docx`
+
+## `fixtures/word_default/`
+
+Data: a .docx fixture the reader tests open, kept whole and unpacked into its parts.
+
+- `fixtures/word_default/[Content_Types].xml`
+- `fixtures/word_default/docProps/app.xml`
+- `fixtures/word_default/docProps/core.xml`
+- `fixtures/word_default/_rels/.rels`
+- `fixtures/word_default/word_default.docx`
+- `fixtures/word_default/word/document.xml`
+- `fixtures/word_default/word/fontTable.xml`
+- `fixtures/word_default/word/numbering.xml`
+- `fixtures/word_default/word/_rels/document.xml.rels`
+- `fixtures/word_default/word/settings.xml`
+- `fixtures/word_default/word/styles.xml`
+- `fixtures/word_default/word/theme/theme1.xml`
+- `fixtures/word_default/word/webSettings.xml`

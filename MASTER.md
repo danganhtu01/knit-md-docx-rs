@@ -1,6 +1,6 @@
 # knit-md-docx-rs — master
 
-> **last write-back: 2026-10-09T21:18:20+07** — R-1882: check-graph 2289 warnings → 1102. Upstream's code files listed one by one in FILES.md, written from git by scripts/files-index.sh and declared by `index:`; the seven upstream documents each link to a file they belong with. The 1102 left are the 551 files of the data folders (fixtures, snapshots, test output, the built demo page), mapped as folder rows that check-graph cannot yet accept (FB-4, llm-skills).
+> **last write-back: 2026-10-09T21:21:47+07** — R-1882: check-graph 0 errors 0 warnings. FILES.md, written from git by scripts/files-index.sh and declared by `index:`, lists every file of upstream's trees, the data folders included (the chief: do not hold for FB-4); the seven upstream documents each link to a file they belong with.
 
 The owner's fork of [bokuweb/docx-rs](https://github.com/bokuweb/docx-rs), a `.docx` writer and
 reader in Rust. The crate in [`docx-core/`](docx-core/) is published under the package name
@@ -94,7 +94,7 @@ index: FILES.md
 | --- | --- |
 | [`docx-core/`](docx-core/README.md) | the crate `knit-md-docx-rs`: `src/` (documents, reader, xml builder), `tests/`, `examples/`, `benches/`; its [`README.md`](docx-core/README.md) is the crates.io readme, a byte copy of the root [`README.md`](README.md) kept because cargo packages only files inside `docx-core/`; edit both together. Every code file is listed in [`FILES.md`](FILES.md) |
 | `docx-wasm/` | upstream's WebAssembly/JavaScript binding; not used by the pair; kept in its language under R-1580 (K-005 in [`TODO_LEDGER.csv`](TODO_LEDGER.csv)). Every file is listed in [`FILES.md`](FILES.md) |
-| [`FILES.md`](FILES.md) | the per-file index of `docx-core/` and `docx-wasm/`, written from `git ls-files` by [`scripts/files-index.sh`](scripts/files-index.sh); run it after an upstream merge, never edit the index by hand |
+| [`FILES.md`](FILES.md) | the per-file index of `docx-core/`, `docx-wasm/`, `fixtures/` and `docs/`, written from `git ls-files` by [`scripts/files-index.sh`](scripts/files-index.sh); run it after an upstream merge, never edit the index by hand |
 | [`scripts/files-index.sh`](scripts/files-index.sh) | writes [`FILES.md`](FILES.md); `--check` says whether it is current |
 | `fixtures/` | data: `.docx` fixtures the reader tests open, each unpacked into its parts |
 | `docx-core/tests/snapshots/`, `docx-core/src/documents/snapshots/`, `docx-wasm/test/__snapshots__/` | data: insta and Jest snapshots the tests compare against |
@@ -103,9 +103,8 @@ index: FILES.md
 | [`images/cat.jpeg`](images/cat.jpeg), [`images/cat_min.jpg`](images/cat_min.jpg) | images the examples embed |
 | [`output/.keep`](output/.keep), [`output/examples/.keep`](output/examples/.keep), [`output/js/.keep`](output/js/.keep) | keep the empty folders the examples write into |
 
-**The data folders' graph warnings.** The data folders above (`fixtures/`, the three snapshot
-folders, `docx-core/tests/output/` and `docs/`) are mapped one row per folder, not per file. On
-2026-10-09 check-graph has no form that accepts a folder row (FB-4 is llm-skills' to build), so their
-files still read `NO-INBOUND` and `NOT-IN-MAP`; they clear when it does. Every other file, the fork's
-own and upstream's code, is mapped one by one (owner, 2026-10-09T21:14:34+07, R-1882: *"Resolve the
-warning"*).
+**The data folders.** The data folders above (`fixtures/`, the three snapshot folders,
+`docx-core/tests/output/` and `docs/`) are mapped one row per folder here, and their files are
+listed one by one in [`FILES.md`](FILES.md), so check-graph reads every file as mapped (owner,
+2026-10-09T21:14:34+07, R-1882: *"Resolve the warning"*). When check-graph accepts a folder row (FB-4,
+llm-skills), the folder rows can replace that listing.

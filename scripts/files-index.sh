@@ -1,5 +1,5 @@
 #!/bin/sh
-# files-index.sh — rewrite FILES.md, the per-file map of upstream's code trees, from `git ls-files`.
+# files-index.sh — rewrite FILES.md, the per-file map of upstream's trees, code and data, from `git ls-files`.
 #
 #   sh scripts/files-index.sh            rewrite FILES.md
 #   sh scripts/files-index.sh --check    exit 1, writing nothing, if FILES.md is out of date
@@ -13,9 +13,10 @@
 # adding or removing a file under docx-core/ or docx-wasm/. A directory with no description below
 # gets a placeholder line that says so; write its description into describe() and run again.
 #
-# Data and record folders are left out: fixtures/, docs/ (upstream's built demo page), every
-# snapshots/ and __snapshots__/ folder, and docx-core/tests/output/. MASTER.md maps each as a
-# folder row; check-graph's folder-row form (FB-4) is llm-skills' to build.
+# The data folders are listed too, one section each, so every file is mapped (the chief, R-1882,
+# 2026-10-09: "do not hold for FB-4"): fixtures/ (one section per fixture), docs/ (upstream's built
+# demo page), every snapshots/ and __snapshots__/ folder, and docx-core/tests/output/. When
+# check-graph accepts a folder row (FB-4, llm-skills), those rows in MASTER.md can replace this.
 set -eu
 cd "$(dirname "$0")/.."
 
@@ -50,27 +51,36 @@ describe() {
     docx-wasm/src) echo "the Rust side of the binding, compiled to WebAssembly" ;;
     docx-wasm/src/adaptors) echo "conversions between the binding's and the crate's types" ;;
     docx-wasm/test|docx-wasm/test/output) echo "the binding's Jest tests and the folder they write into" ;;
+    fixtures/*) echo "data: a .docx fixture the reader tests open, kept whole and unpacked into its parts" ;;
+    docs) echo "data: upstream's built demo page, webpack bundles and the wasm module" ;;
+    docx-core/tests/output) echo "data: a written document's parts, kept by upstream as test output" ;;
+    */snapshots|*/__snapshots__) echo "data: snapshots the tests compare against (insta for Rust, Jest for the binding)" ;;
     *) echo "(no description yet: add one to describe() in scripts/files-index.sh)" ;;
   esac
 }
 
 render() {
   cat <<'EOF'
-# Files of upstream's code trees
+# Files of upstream's trees
 
-Referenced by: [`MASTER.md`](MASTER.md), which maps these trees by directory. This index lists every
-tracked file under `docx-core/` and `docx-wasm/`, under its directory. It is written by
-[`scripts/files-index.sh`](scripts/files-index.sh) from `git ls-files`; never edit it by hand. Run
-`sh scripts/files-index.sh` after an upstream merge or after adding or removing a file there, and
-`sh scripts/files-index.sh --check` to see whether it is current.
+Referenced by: [`MASTER.md`](MASTER.md), which maps these trees by directory. This index lists
+every tracked file under `docx-core/`, `docx-wasm/`, `fixtures/` and `docs/`, under its directory.
+It is written by [`scripts/files-index.sh`](scripts/files-index.sh) from `git ls-files`; never edit
+it by hand. Run `sh scripts/files-index.sh` after an upstream merge or after adding or removing a
+file there, and `sh scripts/files-index.sh --check` to see whether it is current.
 
-The fixtures, snapshots, test output and the built demo page are data, mapped as folders in
-`MASTER.md`, and are not listed here.
+The data (the fixtures, one section each; the snapshots; the test output; the built demo page) is
+listed too, so every file is mapped until check-graph accepts a folder row.
 EOF
-  git ls-files docx-core docx-wasm \
-    | grep -vE '(^|/)(snapshots|__snapshots__)/|^docx-core/tests/output/' \
+  git ls-files docx-core docx-wasm fixtures docs \
     | grep -vxF -e docx-core/README.md -e docx-core/LICENSE \
-    | awk '{ d = $0; sub(/\/[^\/]*$/, "", d); print d "\t" $0 }' \
+    | awk '{ d = $0
+           if (d ~ /^fixtures\//) { split(d, p, "/"); d = p[1] "/" p[2] }
+           else if (d ~ /^docs\//) d = "docs"
+           else if (match(d, /^.*\/(snapshots|__snapshots__)\//)) d = substr(d, 1, RLENGTH - 1)
+           else if (d ~ /^docx-core\/tests\/output\//) d = "docx-core/tests/output"
+           else sub(/\/[^\/]*$/, "", d)
+           print d "\t" $0 }' \
     | sort -t "$(printf '\t')" -k1,1 -k2,2 \
     | { prev=""
         while IFS="$(printf '\t')" read -r dir file; do
