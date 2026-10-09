@@ -1,3 +1,5 @@
+<!-- Read [CONTRIBUTING.md](../CONTRIBUTING.md) before opening a pull request. -->
+
 ## What does this change?
 
 A clear and concise description of what the changes is.

@@ -1,6 +1,6 @@
 # knit-md-docx-rs — master
 
-> **last write-back: 2026-10-09T19:32:48+07** — sweep: the consumer line names terminal-config as its own repository (/srv/GitHub/terminal-config), where its pins.conf pins the release; claims rechecked (K-004's two branches exist, v0.2.0 assets served). Before it, R-1860: both task files on the C-19 header with Details; K-005 and K-006 retired as Superseded (R-1580, C-7 R-1854).
+> **last write-back: 2026-10-09T21:18:20+07** — R-1882: check-graph 2289 warnings → 1102. Upstream's code files listed one by one in FILES.md, written from git by scripts/files-index.sh and declared by `index:`; the seven upstream documents each link to a file they belong with. The 1102 left are the 551 files of the data folders (fixtures, snapshots, test output, the built demo page), mapped as folder rows that check-graph cannot yet accept (FB-4, llm-skills).
 
 The owner's fork of [bokuweb/docx-rs](https://github.com/bokuweb/docx-rs), a `.docx` writer and
 reader in Rust. The crate in [`docx-core/`](docx-core/) is published under the package name
@@ -88,20 +88,24 @@ GitHub and editor settings:
 
 Directories, mapped as directories where they are upstream trees:
 
+index: FILES.md
+
 | Directory or file | What it is |
 | --- | --- |
-| [`docx-core/`](docx-core/README.md) | the crate `knit-md-docx-rs`: `src/` (documents, reader, xml builder), `tests/`, `examples/`, `benches/`; its [`README.md`](docx-core/README.md) is the crates.io readme, a byte copy of the root [`README.md`](README.md) kept because cargo packages only files inside `docx-core/`; edit both together |
-| `docx-wasm/` | upstream's WebAssembly/JavaScript binding; not used by the pair; kept in its language under R-1580 (K-005 in [`TODO_LEDGER.csv`](TODO_LEDGER.csv)) |
-| `fixtures/` | `.docx` fixtures the reader tests open |
-| `docs/` | upstream's built demo page |
+| [`docx-core/`](docx-core/README.md) | the crate `knit-md-docx-rs`: `src/` (documents, reader, xml builder), `tests/`, `examples/`, `benches/`; its [`README.md`](docx-core/README.md) is the crates.io readme, a byte copy of the root [`README.md`](README.md) kept because cargo packages only files inside `docx-core/`; edit both together. Every code file is listed in [`FILES.md`](FILES.md) |
+| `docx-wasm/` | upstream's WebAssembly/JavaScript binding; not used by the pair; kept in its language under R-1580 (K-005 in [`TODO_LEDGER.csv`](TODO_LEDGER.csv)). Every file is listed in [`FILES.md`](FILES.md) |
+| [`FILES.md`](FILES.md) | the per-file index of `docx-core/` and `docx-wasm/`, written from `git ls-files` by [`scripts/files-index.sh`](scripts/files-index.sh); run it after an upstream merge, never edit the index by hand |
+| [`scripts/files-index.sh`](scripts/files-index.sh) | writes [`FILES.md`](FILES.md); `--check` says whether it is current |
+| `fixtures/` | data: `.docx` fixtures the reader tests open, each unpacked into its parts |
+| `docx-core/tests/snapshots/`, `docx-core/src/documents/snapshots/`, `docx-wasm/test/__snapshots__/` | data: insta and Jest snapshots the tests compare against |
+| `docx-core/tests/output/` | data: a written document's parts, kept by upstream as test output |
+| `docs/` | data: upstream's built demo page (webpack bundles and the wasm module) |
 | [`images/cat.jpeg`](images/cat.jpeg), [`images/cat_min.jpg`](images/cat_min.jpg) | images the examples embed |
 | [`output/.keep`](output/.keep), [`output/examples/.keep`](output/examples/.keep), [`output/js/.keep`](output/js/.keep) | keep the empty folders the examples write into |
 
-**Carried graph warnings.** `check-graph` wants every tracked file listed one row each. The four
-upstream trees above (`docx-core/`, `docx-wasm/`, `fixtures/`, `docs/`) hold over a thousand
-source files and fixtures, which are mapped by directory here. Their `NO-INBOUND` and `NOT-IN-MAP`
-warnings are carried by decision, not left by oversight: a per-file listing would be a
-generated copy of `git ls-files` that goes stale with every upstream merge. The same goes for
-`NO-OUTBOUND` on upstream's own documents, which point only at the web: [`README.md`](README.md),
-[`CHANGELOG.md`](CHANGELOG.md), [`CONTRIBUTING.md`](CONTRIBUTING.md) and the three `.github` templates;
-a map line added to them would be one more conflict at every upstream merge. Errors are not carried.
+**The data folders' graph warnings.** The data folders above (`fixtures/`, the three snapshot
+folders, `docx-core/tests/output/` and `docs/`) are mapped one row per folder, not per file. On
+2026-10-09 check-graph has no form that accepts a folder row (FB-4 is llm-skills' to build), so their
+files still read `NO-INBOUND` and `NOT-IN-MAP`; they clear when it does. Every other file, the fork's
+own and upstream's code, is mapped one by one (owner, 2026-10-09T21:14:34+07, R-1882: *"Resolve the
+warning"*).

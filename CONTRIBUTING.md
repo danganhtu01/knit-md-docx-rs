@@ -5,6 +5,9 @@ email, or any other method with the owners of this repository before making a ch
 
 Please note we have a code of conduct, please follow it in all your interactions with the project.
 
+This fork keeps its map, commands and open work in [`MASTER.md`](MASTER.md); read it before changing
+the fork's own code.
+
 ## Pull Request Process
 
 Pull requests are always welcome.

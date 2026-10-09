@@ -6,6 +6,8 @@ labels: bug
 assignees: ""
 ---
 
+<!-- Read [CONTRIBUTING.md](../../CONTRIBUTING.md) before filing. -->
+
 ## Describe the bug
 
 A clear and concise description of what the bug is.

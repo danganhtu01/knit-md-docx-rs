@@ -22,7 +22,7 @@
 > flags upstream writes into every `settings.xml` (`Docx::east_asian_compat(false)`).
 >
 > **Fork maintained by** [danganhtu01](https://github.com/danganhtu01), with
-> **Claude (Anthropic) as co-author**.
+> **Claude (Anthropic) as co-author**. Licensed MIT, as upstream is: see [`LICENSE`](LICENSE).
 
 ## Installation
 
