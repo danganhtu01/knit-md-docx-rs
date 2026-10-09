@@ -8,3 +8,20 @@ Notes: PRIVATE on 2026-09-24; knit-md-docx-rs is already PUBLIC. Check the histo
 K-003,"Release the CLI for terminal-config: a tag-triggered GitHub release with x86_64-unknown-linux-musl, an x86_64-pc-windows-msvc zip and SHA256SUMS; the docx-rs path dependency buildable in CI; knit-md-docx --version printing plain semver; then send the tag to the chief for os-config",Done,2026-09-24,,,,knit_md_docx_rs,knit-md-docx-rs,knit-md-docx,,"Repo: knit-md-docx. Due: none dated.
 Source: Owner via the chief, R-0930: ""make that rust tool a dependency of terminal-config""; R-0932: ""terminal-config is to install the tool on every machine for terminal based md knit to docx""
 Notes: Shape asked for by os-config (plan d751f65 in its LOOP.md), carried by the chief 2026-09-24"
+K-005,Keep or remove upstream's JavaScript and TypeScript in the fork,Superseded,2026-10-06,,,"Answered by his R-1580, fleet-wide: current code stays in its language",knit_md_docx_rs,knit-md-docx-rs,,,"The fleet's convention C-2 (R-1485) is Rust and shell; verify-project's lang-other check flagged 152 files here:
+- docx-wasm/ (145 files): bokuweb's npm package docx-wasm, the JS binding of docx-rs.
+- docs/ (3 files): its built demo page.
+- docx-core/bindings/ (4 files): TypeScript types ts-rs generates from the Rust structs.
+All are upstream's, none written in the fork, none used by the pair.
+Options were: name them an exception as upstream's outward-facing JS SDK, or delete docx-wasm/ and docs/ from the fork (more conflicts at each upstream merge).
+The CI's node 20 (latest 26) is held by a pin: line in the registry entry.
+The JSON beside it (package.json, the tsconfig files, renovate.json, hello.json) took lang-exception lines citing R-0005, as formats npm, TypeScript, Renovate and upstream chose.
+Source: atlas cross-check dce1320 and verify-project lang-other, carried by the chief in the R-1487 sweep of 2026-10-06.
+Retired 2026-10-09: his words 2026-10-07T13:18:09+07 (R-1580): ""Keep the current languages. New work are built according to the rules. Current ones stay. Do not waste time to port the working codes""; 13:19:58: ""D5 applied fleet wide"". verify-project now reads: lang-other OK, 152 kept from before R-1580. The files stay."
+K-006,Rewrite or accept a 2026-07-26 commit authored by FinFan's account,Superseded,2026-10-06,,,Answered by C-7 (R-1854): a commit from before the rule is history,knit_md_docx_rs,knit-md-docx-rs,,,"Commit 948d95e (2026-07-26, ""WIP: pre-migration state snapshot 2026-07-26 (automated)"", 2 files in docx-core) is authored ""Claude <claude.01@finfan.vn>"", FinFan's account, not his (C-7, R-0410; R-1147).
+Options were: rewrite the author to danganhtu01, or accept it with a written exception.
+A rewrite force-pushes main and changes the 9 commits after it. One of them is a2b3f2e, which knit-md-docx's DOCX_RS_REV pins and the v0.2.0 release was built from, so DOCX_RS_REV would move to the rewritten commit.
+The commit is also on origin/archive/main/202607301007VN-p2.
+Not rewritten by the assistant: rewriting pushed history is his call. knit-md-docx has no such commit (all its commits are by danganhtu01).
+Source: verify-project author check (llm-skills b5c97b9), carried by the chief 2026-10-06.
+Retired 2026-10-09: conventions.md C-7 now says ""A commit made before the rule is history (R-1854 ... knit-md-docx-rs 948d95e ...): only a force-push could change it, and that is his"", and the author check reads only commits from 2026-08-21. verify-project reads: author OK. A force-push stays his to order."

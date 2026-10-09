@@ -1,6 +1,6 @@
 # knit-md-docx-rs — master
 
-> **last write-back: 2026-10-09T19:30:06+07** — R-1860: TODO.csv and TODO_LEDGER.csv moved to the fleet's C-19 header with a Details column; each live Task is now a short title, its context in Details; the task-file vocabulary below rewritten to match.
+> **last write-back: 2026-10-09T19:31:34+07** — R-1860: TODO.csv and TODO_LEDGER.csv moved to the fleet's C-19 header with a Details column, each live Task a short title with its context in Details; K-005 and K-006 retired as Superseded, answered by R-1580 and C-7 (R-1854); the task-file vocabulary below rewritten to match.
 
 The owner's fork of [bokuweb/docx-rs](https://github.com/bokuweb/docx-rs), a `.docx` writer and
 reader in Rust. The crate in [`docx-core/`](docx-core/) is published under the package name
@@ -90,7 +90,7 @@ Directories, mapped as directories where they are upstream trees:
 | Directory or file | What it is |
 | --- | --- |
 | [`docx-core/`](docx-core/README.md) | the crate `knit-md-docx-rs`: `src/` (documents, reader, xml builder), `tests/`, `examples/`, `benches/`; its [`README.md`](docx-core/README.md) is the crates.io readme, a byte copy of the root [`README.md`](README.md) kept because cargo packages only files inside `docx-core/`; edit both together |
-| `docx-wasm/` | upstream's WebAssembly/JavaScript binding; not used by the pair; whether its JavaScript stays waits on the owner (K-005 in [`TODO.csv`](TODO.csv)) |
+| `docx-wasm/` | upstream's WebAssembly/JavaScript binding; not used by the pair; kept in its language under R-1580 (K-005 in [`TODO_LEDGER.csv`](TODO_LEDGER.csv)) |
 | `fixtures/` | `.docx` fixtures the reader tests open |
 | `docs/` | upstream's built demo page |
 | [`images/cat.jpeg`](images/cat.jpeg), [`images/cat_min.jpg`](images/cat_min.jpg) | images the examples embed |
