@@ -1,6 +1,6 @@
 # knit-md-docx-rs — master
 
-> **last write-back: 2026-10-09T19:31:34+07** — R-1860: TODO.csv and TODO_LEDGER.csv moved to the fleet's C-19 header with a Details column, each live Task a short title with its context in Details; K-005 and K-006 retired as Superseded, answered by R-1580 and C-7 (R-1854); the task-file vocabulary below rewritten to match.
+> **last write-back: 2026-10-09T19:32:48+07** — sweep: the consumer line names terminal-config as its own repository (/srv/GitHub/terminal-config), where its pins.conf pins the release; claims rechecked (K-004's two branches exist, v0.2.0 assets served). Before it, R-1860: both task files on the C-19 header with Details; K-005 and K-006 retired as Superseded (R-1580, C-7 R-1854).
 
 The owner's fork of [bokuweb/docx-rs](https://github.com/bokuweb/docx-rs), a `.docx` writer and
 reader in Rust. The crate in [`docx-core/`](docx-core/) is published under the package name
@@ -24,8 +24,9 @@ Consumers outside the pair, found from their code (first 2026-09-24, rechecked 2
   Dockerfile copies both repositories in as named build contexts, which is why each has a
   `.dockerignore`.
 - **llm-skills** — the `deutsch-perfekt-glossieren` skill knits with the `knit-md-docx` binary.
-- **os-config** — terminal-config installs the CLI on every machine from its tagged GitHub
-  releases, pinned in its `pins.conf` (`KNIT_MD_DOCX_PIN`, with each asset's SHA-256). The
+- **os-config and terminal-config** — terminal-config (`/srv/GitHub/terminal-config`, its own repository,
+  driven from os-config's `LOOP.md`) installs the CLI on every machine from its tagged GitHub
+  releases, pinned in terminal-config's `pins.conf` (`KNIT_MD_DOCX_PIN`, with each asset's SHA-256). The
   release pipeline was built under K-003, now in [`TODO_LEDGER.csv`](TODO_LEDGER.csv).
 
 ## Where the state lives
