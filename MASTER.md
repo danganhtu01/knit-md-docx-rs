@@ -1,6 +1,6 @@
 # knit-md-docx-rs — master
 
-> **last write-back: 2026-10-09T21:21:47+07** — R-1882: check-graph 0 errors 0 warnings. FILES.md, written from git by scripts/files-index.sh and declared by `index:`, lists every file of upstream's trees, the data folders included (the chief: do not hold for FB-4); the seven upstream documents each link to a file they belong with.
+> **last write-back: 2026-10-10T00:34:29+07** — R-1897: conventions 202610100028VN read; K-004 cites the rule it serves (CA-0028, TASK-NO-RULING); knit-md-docx's CODE_BREAKDOWN.md drops three relative time words (C-30). Both repositories at check-graph 0 errors 0 warnings.
 
 The owner's fork of [bokuweb/docx-rs](https://github.com/bokuweb/docx-rs), a `.docx` writer and
 reader in Rust. The crate in [`docx-core/`](docx-core/) is published under the package name
