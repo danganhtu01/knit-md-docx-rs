@@ -1,6 +1,6 @@
 # knit-md-docx-rs — master
 
-> **last write-back: 2026-10-06T22:14:38+07** — R-1552: SOURCE.txt records the fork point, bokuweb/docx-rs@ab871c0 (MIT, taken 2026-06-09), read from the merge base with upstream's main; it and LICENSE are mapped below.
+> **last write-back: 2026-10-09T19:30:06+07** — R-1860: TODO.csv and TODO_LEDGER.csv moved to the fleet's C-19 header with a Details column; each live Task is now a short title, its context in Details; the task-file vocabulary below rewritten to match.
 
 The owner's fork of [bokuweb/docx-rs](https://github.com/bokuweb/docx-rs), a `.docx` writer and
 reader in Rust. The crate in [`docx-core/`](docx-core/) is published under the package name
@@ -37,10 +37,13 @@ Consumers outside the pair, found from their code (first 2026-09-24, rechecked 2
 | this file | the heartbeat and the map |
 | `/srv/project-assistant/registry/knit-md-docx-rs.txt` | the registry entry the chief reads (outside the repository) |
 
-**The task file's vocabulary.** Columns: `ID,Task,Status,Repo,Due,Waits on,Source,Notes`. IDs are
-`K-` and three digits. Open states: `Open`, `Blocked`. A finished row takes `Done` or
-`Dropped` and moves to the ledger in the same edit. A task for the sibling repository is filed
-here, with `knit-md-docx` in its `Repo` cell.
+**The task file's vocabulary.** Both files carry the fleet's one header (C-19 in project-assistant
+`references/conventions.md`): `ID,Task,Status,Raised,Due,Waits on,Note,Assistant,Project,Subproject,Sub-subproject,Details`.
+IDs are `K-` and three digits. Open states: `Open`, `Blocked`. A finished row takes `Done` or
+`Superseded` and moves to the ledger in the same edit. `Task` is a short title (80 characters at
+most); everything else about the task goes in `Details`, which becomes the task's page in Notion.
+`Assistant` is `knit_md_docx_rs` and `Project` is `knit-md-docx-rs` on every row. A task for the
+sibling repository is filed here, with `knit-md-docx` in its `Subproject` cell.
 
 ## Commands
 
