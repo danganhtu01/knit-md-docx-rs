@@ -1,6 +1,6 @@
 # knit-md-docx-rs — master
 
-> **last write-back: 2026-10-10T00:34:29+07** — R-1897: conventions 202610100028VN read; K-004 cites the rule it serves (CA-0028, TASK-NO-RULING); knit-md-docx's CODE_BREAKDOWN.md drops three relative time words (C-30). Both repositories at check-graph 0 errors 0 warnings.
+> **last write-back: 2026-10-10T21:46:19+07** — K-004 Done (the chief's poll 8527, decided under C-39): knit-md-docx's theme branches ported onto its main as 59e48d2 (`--config theme.toml`, size, colour and fill flags), the branches kept under `archive/` on origin; [`TODO.csv`](TODO.csv) has no live row.
 
 The owner's fork of [bokuweb/docx-rs](https://github.com/bokuweb/docx-rs), a `.docx` writer and
 reader in Rust. The crate in [`docx-core/`](docx-core/) is published under the package name
