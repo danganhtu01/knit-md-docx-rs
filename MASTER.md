@@ -1,6 +1,6 @@
 # knit-md-docx-rs — master
 
-> **last write-back: 2026-10-18T23:47:12+07** — sweep: consumers rechecked from their code (ff-lc-app, llm-skills, terminal-config), the map unchanged; K-007 opened in [`TODO.csv`](TODO.csv): release knit-md-docx v0.3.0 so installed machines get the themes. Both repositories at check-graph 0 errors 0 warnings.
+> **last write-back: 2026-10-18T23:58:44+07** — the sweep's cost row in [`COST_TASKS.csv`](COST_TASKS.csv), mapped here (C-50); sweep: consumers rechecked from their code (ff-lc-app, llm-skills, terminal-config), the map unchanged; K-007 opened in [`TODO.csv`](TODO.csv): release knit-md-docx v0.3.0 so installed machines get the themes. Both repositories at check-graph 0 errors 0 warnings.
 
 The owner's fork of [bokuweb/docx-rs](https://github.com/bokuweb/docx-rs), a `.docx` writer and
 reader in Rust. The crate in [`docx-core/`](docx-core/) is published under the package name
@@ -35,6 +35,7 @@ Consumers outside the pair, found from their code (first 2026-09-24, rechecked 2
 | --- | --- |
 | [`TODO.csv`](TODO.csv) | the task file: open work only, one row per task |
 | [`TODO_LEDGER.csv`](TODO_LEDGER.csv) | finished rows, moved whole under the same header; searched, never loaded |
+| [`COST_TASKS.csv`](COST_TASKS.csv) | one row per finished task, its time and tokens, for the fleet cost study (C-50); written by project-assistant's `cost-task.sh`, never by hand |
 | this file | the heartbeat and the map |
 | `/srv/project-assistant/registry/knit-md-docx-rs.txt` | the registry entry the chief reads (outside the repository) |
 
