@@ -1,6 +1,6 @@
 # knit-md-docx-rs — master
 
-> **last write-back: 2026-10-10T21:46:19+07** — K-004 Done (the chief's poll 8527, decided under C-39): knit-md-docx's theme branches ported onto its main as 59e48d2 (`--config theme.toml`, size, colour and fill flags), the branches kept under `archive/` on origin; [`TODO.csv`](TODO.csv) has no live row.
+> **last write-back: 2026-10-18T23:47:12+07** — sweep: consumers rechecked from their code (ff-lc-app, llm-skills, terminal-config), the map unchanged; K-007 opened in [`TODO.csv`](TODO.csv): release knit-md-docx v0.3.0 so installed machines get the themes. Both repositories at check-graph 0 errors 0 warnings.
 
 The owner's fork of [bokuweb/docx-rs](https://github.com/bokuweb/docx-rs), a `.docx` writer and
 reader in Rust. The crate in [`docx-core/`](docx-core/) is published under the package name
@@ -18,7 +18,7 @@ The owner calls the pair **knit-md-docx-rs**, and one assistant owns both reposi
 | `/srv/GitHub/knit-md-docx-rs` (this one, the hub) | the writer library, package `knit-md-docx-rs` | — |
 | `/srv/GitHub/knit-md-docx` (entry point `MASTER.md`) | the Markdown-to-docx converter `rust_knit_md_docx` and its CLI `knit-md-docx` | path dependency on `../knit-md-docx-rs/docx-core` |
 
-Consumers outside the pair, found from their code (first 2026-09-24, rechecked 2026-09-27):
+Consumers outside the pair, found from their code (first 2026-09-24, rechecked 2026-10-18):
 
 - **ff-lc-app** — `rust_knit_md_docx` as a path dependency with `default-features = false`; its
   Dockerfile copies both repositories in as named build contexts, which is why each has a
