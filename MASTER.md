@@ -1,6 +1,6 @@
 # knit-md-docx-rs — master
 
-> **last write-back: 2026-10-24T09:01:38+07** — K-007: knit-md-docx v0.3.0 released on his run card 13764 (Release run 40052076524), built and gated on his 13746 and landed on knit-md-docx main (494f976 lint gate, f0aee31 version and fork pin, 0a90724 scripts/release.sh); its new pin and checksums sent to os-config for terminal-config's pins.conf, which K-007 now waits on; K-008 opened for the release script's five Low hardening notes; lanes stood down on his 13755; the cost row in [`COST_TASKS.csv`](COST_TASKS.csv). Rows in [`TODO.csv`](TODO.csv). Both repositories at check-graph 0 errors 0 warnings.
+> **last write-back: 2026-10-31T10:06:58+07** — K-007 Done and moved to [`TODO_LEDGER.csv`](TODO_LEDGER.csv): terminal-config@9496437 pins knit-md-docx 0.3.0 with the release's two SHA-256 (the chief's 95bdf199); K-009 opened in [`TODO.csv`](TODO.csv), the hyperlink relationships written in hash order (docx-core/src/documents/mod.rs:1143), from finfan's R-2740 by the chief's 43ec7b86; K-008 still open. Both repositories at check-graph 0 errors 0 warnings.
 
 The owner's fork of [bokuweb/docx-rs](https://github.com/bokuweb/docx-rs), a `.docx` writer and
 reader in Rust. The crate in [`docx-core/`](docx-core/) is published under the package name
