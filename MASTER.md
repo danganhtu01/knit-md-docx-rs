@@ -1,6 +1,6 @@
 # knit-md-docx-rs — master
 
-> **last write-back: 2026-10-31T10:06:58+07** — K-007 Done and moved to [`TODO_LEDGER.csv`](TODO_LEDGER.csv): terminal-config@9496437 pins knit-md-docx 0.3.0 with the release's two SHA-256 (the chief's 95bdf199); K-009 opened in [`TODO.csv`](TODO.csv), the hyperlink relationships written in hash order (docx-core/src/documents/mod.rs:1143), from finfan's R-2740 by the chief's 43ec7b86; K-008 still open. Both repositories at check-graph 0 errors 0 warnings.
+> **last write-back: 2026-11-14T11:26:57+07** — the cost rows moved to [`COST_TASKS.toml`](COST_TASKS.toml) (C-64, LS-T-0397; main archived first as archive/main/202611141126VN, prove-move byte-equal, records check 0 findings), with [`COST_TASKS.csv`](COST_TASKS.csv) kept as its export; the 2026-10-31 back-fill cost row (LM-088, the chief's CA-A-0471); the entry brought onto project-assistant 1.63.0 and conventions 202611121737VN (CA-T-0109). Open: K-008, K-009 in [`TODO.csv`](TODO.csv). check-graph 0 errors 0 warnings.
 
 The owner's fork of [bokuweb/docx-rs](https://github.com/bokuweb/docx-rs), a `.docx` writer and
 reader in Rust. The crate in [`docx-core/`](docx-core/) is published under the package name
@@ -35,7 +35,8 @@ Consumers outside the pair, found from their code (first 2026-09-24, rechecked 2
 | --- | --- |
 | [`TODO.csv`](TODO.csv) | the task file: open work only, one row per task |
 | [`TODO_LEDGER.csv`](TODO_LEDGER.csv) | finished rows, moved whole under the same header; searched, never loaded |
-| [`COST_TASKS.csv`](COST_TASKS.csv) | one row per finished task, its time and tokens, for the fleet cost study (C-50); written by project-assistant's `cost-task.sh`, never by hand |
+| [`COST_TASKS.toml`](COST_TASKS.toml) | the cost store: one record per finished task, its time and tokens, for the fleet cost study (C-50, C-64); written through llm-skills' `records` tool by project-assistant's `cost-task.sh`, never by hand |
+| [`COST_TASKS.csv`](COST_TASKS.csv) | the CSV export of `COST_TASKS.toml`, rebuilt by `cost-task.sh` on each write and kept for its readers (C-64); never edited by hand |
 | this file | the heartbeat and the map |
 | `/srv/project-assistant/registry/knit-md-docx-rs.txt` | the registry entry the chief reads (outside the repository) |
 
