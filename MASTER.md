@@ -1,6 +1,6 @@
 # knit-md-docx-rs — master
 
-> **last write-back: 2026-11-15T16:36:21+07** — K-009 landed on main as d9f3c04 (hyperlink rels in document order, custom properties in name order, a byte-stability test; tests passed on corsair at 6d8a640 and again at main 5a2a44a, clippy a known gap, both critics PASS); left: the knit-md-docx 0.3.1 release, his run card. K-008 held to a later round by his decision. Open: K-008, K-009 in [`TODO.csv`](TODO.csv). check-graph 0 errors 0 warnings.
+> **last write-back: 2026-11-15T19:23:56+07** — K-009 landed on main as d9f3c04 (hyperlink rels in document order, custom properties in name order, a byte-stability test; tests pass on corsair at main 5a2a44a, clippy a known gap) and the knit-md-docx 0.3.1 release prepared on its main fba9461 (DOCX_RS_REV 3f04093, 72 tests pass); left: the v0.3.1 tag, his run card. Open: K-008, K-009 in [`TODO.csv`](TODO.csv). check-graph 0 errors 0 warnings.
 
 The owner's fork of [bokuweb/docx-rs](https://github.com/bokuweb/docx-rs), a `.docx` writer and
 reader in Rust. The crate in [`docx-core/`](docx-core/) is published under the package name
