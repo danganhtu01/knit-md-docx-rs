@@ -1,6 +1,6 @@
 # knit-md-docx-rs — master
 
-> **last write-back: 2026-11-15T15:41:44+07** — K-009 claimed and built on lane/K-009 (hyperlink rels in document order, custom properties in name order, a byte-stability test), for the chief's coding round; not yet tested or landed. K-008 held to a later round by his decision. Open: K-008, K-009 in [`TODO.csv`](TODO.csv). check-graph 0 errors 0 warnings.
+> **last write-back: 2026-11-15T15:50:16+07** — K-009 built on lane/K-009 at 6d8a640 (hyperlink rels in document order, custom properties in name order, a byte-stability test): tests pass on corsair, clippy unrun there, both critics PASS; not landed. K-008 held to a later round by his decision. Open: K-008, K-009 in [`TODO.csv`](TODO.csv). check-graph 0 errors 0 warnings.
 
 The owner's fork of [bokuweb/docx-rs](https://github.com/bokuweb/docx-rs), a `.docx` writer and
 reader in Rust. The crate in [`docx-core/`](docx-core/) is published under the package name
