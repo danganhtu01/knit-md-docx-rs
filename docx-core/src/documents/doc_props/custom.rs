@@ -7,7 +7,9 @@ use crate::xml_builder::*;
 #[derive(Debug, Clone, PartialEq, Serialize, Default)]
 #[serde(rename_all = "camelCase")]
 pub struct CustomProps {
-    pub properties: std::collections::HashMap<String, String>,
+    // A BTreeMap, not a HashMap: build_to walks it in order, and docProps/custom.xml (its
+    // element order and its pids) must not depend on a hash seed (K-009).
+    pub properties: std::collections::BTreeMap<String, String>,
 }
 
 impl CustomProps {
