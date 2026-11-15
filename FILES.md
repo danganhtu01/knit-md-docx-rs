@@ -512,6 +512,7 @@ Integration tests: writing and reading whole documents.
 
 - `docx-core/tests/lib.rs`
 - `docx-core/tests/reader.rs`
+- `docx-core/tests/stable_output.rs`
 
 ## `docx-core/tests/output/`
 

@@ -1,6 +1,6 @@
 # knit-md-docx-rs — master
 
-> **last write-back: 2026-11-14T11:26:57+07** — the cost rows moved to [`COST_TASKS.toml`](COST_TASKS.toml) (C-64, LS-T-0397; main archived first as archive/main/202611141126VN, prove-move byte-equal, records check 0 findings), with [`COST_TASKS.csv`](COST_TASKS.csv) kept as its export; the 2026-10-31 back-fill cost row (LM-088, the chief's CA-A-0471); the entry brought onto project-assistant 1.63.0 and conventions 202611121737VN (CA-T-0109). Open: K-008, K-009 in [`TODO.csv`](TODO.csv). check-graph 0 errors 0 warnings.
+> **last write-back: 2026-11-15T15:41:44+07** — K-009 claimed and built on lane/K-009 (hyperlink rels in document order, custom properties in name order, a byte-stability test), for the chief's coding round; not yet tested or landed. K-008 held to a later round by his decision. Open: K-008, K-009 in [`TODO.csv`](TODO.csv). check-graph 0 errors 0 warnings.
 
 The owner's fork of [bokuweb/docx-rs](https://github.com/bokuweb/docx-rs), a `.docx` writer and
 reader in Rust. The crate in [`docx-core/`](docx-core/) is published under the package name

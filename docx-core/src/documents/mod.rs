@@ -966,7 +966,7 @@ impl Docx {
         let mut comments_extended: Vec<CommentExtended> = vec![];
         let mut comment_map: HashMap<usize, String> = HashMap::new();
 
-        let mut hyperlink_map: HashMap<String, String> = HashMap::new();
+        let mut hyperlink_map = HyperlinkRels::default();
 
         for child in &self.document.children {
             match child {
@@ -1023,7 +1023,7 @@ impl Docx {
                         }
                         if let ParagraphChild::Hyperlink(h) = child {
                             if let HyperlinkData::External { rid, path } = &h.link {
-                                hyperlink_map.insert(rid.clone(), path.clone());
+                                hyperlink_map.insert(rid, path);
                             };
                             for child in &h.children {
                                 if let ParagraphChild::CommentStart(c) = child {
@@ -1062,7 +1062,7 @@ impl Docx {
                                 }
                                 if let ParagraphChild::Hyperlink(h) = child {
                                     if let HyperlinkData::External { rid, path } = &h.link {
-                                        hyperlink_map.insert(rid.clone(), path.clone());
+                                        hyperlink_map.insert(rid, path);
                                     };
                                     for child in &h.children {
                                         if let ParagraphChild::CommentStart(c) = child {
@@ -1100,7 +1100,7 @@ impl Docx {
                                 }
                                 if let ParagraphChild::Hyperlink(h) = child {
                                     if let HyperlinkData::External { rid, path } = &h.link {
-                                        hyperlink_map.insert(rid.clone(), path.clone());
+                                        hyperlink_map.insert(rid, path);
                                     };
                                     for child in &h.children {
                                         if let ParagraphChild::CommentStart(c) = child {
@@ -1140,7 +1140,7 @@ impl Docx {
 
         self.comments.add_comments(comments);
 
-        for (id, d) in hyperlink_map {
+        for (id, d) in hyperlink_map.into_pairs() {
             self.document_rels
                 .hyperlinks
                 .push((id, d, "External".to_string())); // Now support external only
@@ -1541,12 +1541,39 @@ impl Docx {
     }
 }
 
+/// The external hyperlink relationships found while walking the document, in the order the
+/// links first appear in it. `document.xml.rels` is written from this order, so it must not
+/// depend on a hash seed (K-009): a rebuilt package has to be byte-equal. A relationship id
+/// met twice (a reader-made document reuses one id for every link to the same address)
+/// keeps its first place and takes the last path, as the `HashMap` it replaces did.
+#[derive(Default)]
+struct HyperlinkRels {
+    pairs: Vec<(String, String)>,
+    // Lookup only: the index of an id in `pairs`. Nothing iterates this map.
+    index: HashMap<String, usize>,
+}
+
+impl HyperlinkRels {
+    fn insert(&mut self, rid: &str, path: &str) {
+        if let Some(&i) = self.index.get(rid) {
+            self.pairs[i].1 = path.to_string();
+        } else {
+            self.index.insert(rid.to_string(), self.pairs.len());
+            self.pairs.push((rid.to_string(), path.to_string()));
+        }
+    }
+
+    fn into_pairs(self) -> Vec<(String, String)> {
+        self.pairs
+    }
+}
+
 fn collect_dependencies_in_paragraph(
     paragraph: &Paragraph,
     comments: &mut Vec<Comment>,
     comments_extended: &mut Vec<CommentExtended>,
     comment_map: &mut HashMap<usize, String>,
-    hyperlink_map: &mut HashMap<String, String>,
+    hyperlink_map: &mut HyperlinkRels,
 ) {
     for child in &paragraph.children {
         if let ParagraphChild::CommentStart(c) = child {
@@ -1554,7 +1581,7 @@ fn collect_dependencies_in_paragraph(
         }
         if let ParagraphChild::Hyperlink(h) = child {
             if let HyperlinkData::External { rid, path } = &h.link {
-                hyperlink_map.insert(rid.clone(), path.clone());
+                hyperlink_map.insert(rid, path);
             };
             for child in &h.children {
                 if let ParagraphChild::CommentStart(c) = child {
@@ -1645,7 +1672,7 @@ fn collect_dependencies_in_table(
     comments: &mut Vec<Comment>,
     comments_extended: &mut Vec<CommentExtended>,
     comment_map: &mut HashMap<usize, String>,
-    hyperlink_map: &mut HashMap<String, String>,
+    hyperlink_map: &mut HyperlinkRels,
 ) {
     for TableChild::TableRow(row) in &table.rows {
         for TableRowChild::TableCell(cell) in &row.cells {
