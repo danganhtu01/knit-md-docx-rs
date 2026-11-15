@@ -217,9 +217,10 @@ fn rich_document() -> Docx {
 const CHILD_OUT: &str = "K009_CHILD_OUT";
 const CHILD_TEST: &str = "child_writes_package";
 
-/// Run by `separate_processes_write_equal_bytes`, in a process of its own; on its own it does
-/// nothing.
+/// Run by `separate_processes_write_equal_bytes`, in a process of its own, with `--ignored`;
+/// ignored in an ordinary run, so a stray variable cannot make it write.
 #[test]
+#[ignore = "run only as the child of separate_processes_write_equal_bytes"]
 fn child_writes_package() {
     if let Ok(path) = std::env::var(CHILD_OUT) {
         std::fs::write(path, pack(rich_document())).expect("write the package");
@@ -229,13 +230,14 @@ fn child_writes_package() {
 #[test]
 fn separate_processes_write_equal_bytes() {
     let exe = std::env::current_exe().expect("this test binary");
-    let dir = std::env::temp_dir();
+    // The checkout's own target/tmp, not the shared temp folder.
+    let dir = std::path::PathBuf::from(env!("CARGO_TARGET_TMPDIR"));
     let mut packages: Vec<Vec<u8>> = vec![];
     for i in 0..3 {
         let out = dir.join(format!("k009-{}-{i}.docx", std::process::id()));
         let _ = std::fs::remove_file(&out);
         let status = Command::new(&exe)
-            .args(["--exact", CHILD_TEST, "--test-threads=1"])
+            .args(["--ignored", "--exact", CHILD_TEST, "--test-threads=1"])
             .env(CHILD_OUT, &out)
             .output()
             .expect("run the test binary again");
