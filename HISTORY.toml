@@ -1,0 +1,11 @@
+# event records (conventions.md C-64). One field a line, written by the records tool; a hand edit stays allowed and records check reads it.
+
+[[event]]
+id = "EV-0001"
+status = "landed"
+when = "202611210416VN"
+who = "knit-md-docx-rs"
+reached_him = false
+summary = "K-009 done: knit-md-docx v0.3.1 released with byte-stable hyperlink rels, terminal-config pins 0.3.1"
+refs = ["K-009","OC-T-0073"]
+details = "The fork writes hyperlink relationships in document order and custom properties in name order (landed on main as d9f3c04, tests pass on corsair at 5a2a44a; library clippy not yet run, corsair's image lacks it). knit-md-docx v0.3.1 was released on his Approve and run of the release run card on 2026-11-15 (Release run 43713978878, its Lint step with fmt and clippy passed). os-config moved terminal-config's pins.conf to KNIT_MD_DOCX_PIN=0.3.1 on its master ed3ae08 on 2026-11-16; machines pick it up at their next install run."
