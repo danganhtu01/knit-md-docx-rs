@@ -1,6 +1,6 @@
 # knit-md-docx-rs — master
 
-> **last write-back: 2026-11-15T19:33:13+07** — K-009 released as knit-md-docx v0.3.1 on his Approve and run (Release run 43713978878 succeeded, Lint included), the fork's fix landed on main as d9f3c04; waiting on os-config to move terminal-config's pin. Open: K-008, K-009 in [`TODO.csv`](TODO.csv). check-graph 0 errors 0 warnings.
+> **last write-back: 2026-11-21T04:16:48+07** — K-009 Done and moved to [`TODO_LEDGER.csv`](TODO_LEDGER.csv): knit-md-docx v0.3.1 released with byte-stable hyperlink rels, and terminal-config pins it (os-config ed3ae08); [`HISTORY.toml`](HISTORY.toml) started with EV-0001 (C-67). Open: K-008 in [`TODO.csv`](TODO.csv), held to a later round by his decision. check-graph 0 errors 0 warnings.
 
 The owner's fork of [bokuweb/docx-rs](https://github.com/bokuweb/docx-rs), a `.docx` writer and
 reader in Rust. The crate in [`docx-core/`](docx-core/) is published under the package name
@@ -37,6 +37,7 @@ Consumers outside the pair, found from their code (first 2026-09-24, rechecked 2
 | [`TODO_LEDGER.csv`](TODO_LEDGER.csv) | finished rows, moved whole under the same header; searched, never loaded |
 | [`COST_TASKS.toml`](COST_TASKS.toml) | the cost store: one record per finished task, its time and tokens, for the fleet cost study (C-50, C-64); written through llm-skills' `records` tool by project-assistant's `cost-task.sh`, never by hand |
 | [`COST_TASKS.csv`](COST_TASKS.csv) | the CSV export of `COST_TASKS.toml`, rebuilt by `cost-task.sh` on each write and kept for its readers (C-64); never edited by hand |
+| [`HISTORY.toml`](HISTORY.toml) | the typed history: one `[[event]]` per thing the chief should find again (C-67); written by the `records` tool from a records worktree, never by hand, never edited after |
 | this file | the heartbeat and the map |
 | `/srv/project-assistant/registry/knit-md-docx-rs.txt` | the registry entry the chief reads (outside the repository) |
 
